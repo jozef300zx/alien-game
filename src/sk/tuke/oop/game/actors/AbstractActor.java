@@ -80,10 +80,10 @@ public abstract class AbstractActor implements Actor {
 
     @Override
     public boolean intersects(Actor actor) {
-        return ((this.getX() >= actor.getX() && this.getX() <= actor.getX() + actor.getWidth()) || 
-           (this.getX() + this.getWidth() >= actor.getX() && this.getX() + this.getWidth() <= actor.getX() + actor.getWidth())) &&
-           ((this.getY() >= actor.getY() && this.getY() <= actor.getY() + actor.getHeight()) || 
-           (this.getY() + this.getHeight() >= actor.getY() && this.getY() + this.getHeight() <= actor.getY() + actor.getHeight()));
+        return ((this.getX() <= actor.getX() + actor.getWidth() && this.getX() + this.getWidth() >= actor.getX() + actor.getWidth()) || 
+           (this.getX() + this.getWidth() >= actor.getX() && this.getX() <= actor.getX())) &&
+           ((this.getY() <= actor.getY() + actor.getHeight() && this.getY() + this.getHeight() >= actor.getY() + actor.getHeight()) || 
+           (this.getY() + this.getHeight() >= actor.getY() && this.getY() <= actor.getY()));
     
     }
 
