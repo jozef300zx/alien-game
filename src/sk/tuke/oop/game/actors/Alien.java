@@ -5,33 +5,18 @@
  */
 package sk.tuke.oop.game.actors;
 
-import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
-import sk.tuke.oop.framework.World;
 import sk.tuke.oop.game.commands.Move;
 
 /**
  *
  * @author admin
  */
-public class Alien implements Movable{
-    int x;
-    int y;
-    int height;
-    int width;
-    int step;
-    String name;
-    Animation normalAnimation;
+public class Alien extends AbstractActor implements Movable{
+
     int movementInterval;
     double i;
-    Move moveUp;
-    Move moveDown;
-    Move moveRight;
-    Move moveLeft;
-    Move moveDownRight;
-    Move moveDownLeft;
-    Move moveUpRight;
-    Move moveUpLeft;
+
     
     public Alien()
     {
@@ -43,42 +28,6 @@ public class Alien implements Movable{
         i = Math.random();
     }
     
-    @Override
-    public int getX() {
-        return this.x;
-    }
-
-    @Override
-    public int getY() {
-        return this.y;
-    }
-
-    @Override
-    public int getWidth() {
-        return this.width;
-    }
-
-    @Override
-    public int getHeight() {
-        return this.height;
-    }
-
-    @Override
-    public void setPosition(int i, int i1) {
-        this.x = i;
-        this.y = i1;
-    }
-
-    @Override
-    public Animation getAnimation() {
-        return this.normalAnimation;
-    }
-
-    @Override
-    public void setAnimation(Animation anmtn) {
-        this.normalAnimation = anmtn;
-    }
-
     @Override
     public void act() { 
         normalAnimation.stop();
@@ -166,27 +115,5 @@ public class Alien implements Movable{
             
         movementInterval -=1;
         
-    }
-
-    @Override
-    public boolean intersects(Actor actor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addedToWorld(World world) {
-        
-    }
-
-    @Override
-    public World getWorld() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getName() {
-        return this.name;
-    }
-    
-     
+    } 
 }
