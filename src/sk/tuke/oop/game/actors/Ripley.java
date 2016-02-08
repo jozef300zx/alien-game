@@ -14,12 +14,14 @@ import sk.tuke.oop.game.commands.Move;
  * @author admin
  */
 public class Ripley extends AbstractActor implements Movable{
+    private int health;
     
     public Ripley()
     {
         normalAnimation = new Animation("resources/sprites/player.png",32,32,100);
         normalAnimation.setPingPong(true);
         setAnimation(normalAnimation);
+        this.health = 100;
     }
     
         public void act() {
@@ -78,6 +80,14 @@ public class Ripley extends AbstractActor implements Movable{
         if (input.isKeyDown(Input.Key.UP) == false && input.isKeyDown(Input.Key.DOWN) == false && input.isKeyDown(Input.Key.RIGHT) == false && input.isKeyDown(Input.Key.LEFT)) {
             moveLeft.Execute();
         }
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
 
