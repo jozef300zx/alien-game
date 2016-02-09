@@ -15,6 +15,7 @@ import sk.tuke.oop.game.commands.Move;
  */
 public class Ripley extends AbstractActor implements Movable{
     private int health;
+    private int ammo;
     
     public Ripley()
     {
@@ -22,6 +23,7 @@ public class Ripley extends AbstractActor implements Movable{
         normalAnimation.setPingPong(true);
         setAnimation(normalAnimation);
         this.health = 100;
+        this.ammo = 100;
     }
     
         public void act() {
@@ -88,6 +90,14 @@ public class Ripley extends AbstractActor implements Movable{
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public int getAmmo() {
+        return ammo;
+    }
+
+    public void setAmmo(int ammo) {
+        this.ammo = ammo;
     }
 
 

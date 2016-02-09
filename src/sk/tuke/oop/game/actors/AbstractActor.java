@@ -72,6 +72,8 @@ public abstract class AbstractActor implements Actor {
     @Override
     public void setAnimation(Animation anmtn) {
         this.normalAnimation = anmtn;
+        this.height = anmtn.getHeight();
+        this.width = anmtn.getWidth();
     }
 
     @Override
@@ -80,10 +82,10 @@ public abstract class AbstractActor implements Actor {
 
     @Override
     public boolean intersects(Actor actor) {
-        return ((this.getX() <= actor.getX() + actor.getWidth() && this.getX() + this.getWidth() >= actor.getX() + actor.getWidth()) || 
-           (this.getX() + this.getWidth() >= actor.getX() && this.getX() <= actor.getX())) &&
-           ((this.getY() <= actor.getY() + actor.getHeight() && this.getY() + this.getHeight() >= actor.getY() + actor.getHeight()) || 
-           (this.getY() + this.getHeight() >= actor.getY() && this.getY() <= actor.getY()));
+        return (this.getY() + this.getHeight() < actor.getY() == false && 
+                this.getY() > actor.getY() + actor.getHeight() == false &&
+                this.getX() + this.getWidth() < actor.getX() == false &&
+                this.getX() > actor.getX() + actor.getWidth() == false);
     
     }
 

@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.tuke.oop.game.actors;
+package sk.tuke.oop.game.items;
 
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Item;
+import sk.tuke.oop.game.actors.AbstractActor;
+import sk.tuke.oop.game.actors.Ripley;
 
 /**
  *
@@ -15,6 +17,8 @@ import sk.tuke.oop.framework.Item;
  */
 public class Energy extends AbstractActor implements Item {
  Ripley ripley;
+ Animation normalAnimation;
+ 
     public Energy()
     {
         normalAnimation = new Animation("resources/sprites/energy.png",16,16,100);
