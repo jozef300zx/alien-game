@@ -82,6 +82,11 @@ public class Ripley extends AbstractActor implements Movable{
         if (input.isKeyDown(Input.Key.UP) == false && input.isKeyDown(Input.Key.DOWN) == false && input.isKeyDown(Input.Key.RIGHT) == false && input.isKeyDown(Input.Key.LEFT)) {
             moveLeft.Execute();
         }
+        
+        if (input.isKeyPressed(Input.Key.E))
+        {
+            
+        }
     }
 
     public int getHealth() {
