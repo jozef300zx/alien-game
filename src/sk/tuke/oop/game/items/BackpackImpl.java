@@ -5,7 +5,6 @@
  */
 package sk.tuke.oop.game.items;
 
-import static com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.iterator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
