@@ -34,7 +34,7 @@ public class Energy extends AbstractActor implements Item {
             if(actor instanceof Ripley)
             {
                 this.ripley = (Ripley) actor;
-            }
+            } 
         }
         }
         
