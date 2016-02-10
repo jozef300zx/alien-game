@@ -13,17 +13,17 @@ import sk.tuke.oop.game.actors.Usable;
  * @author admin
  */
 public class Use implements Command {
+    Usable actor;
+    Actor actuator;
     
     public Use(Actor actor, Actor actuator)
     {
-        if(actor instanceof Usable)
-        {
-            
-        }
+        this.actor = (Usable) actor;
+        this.actuator = actuator;
     }
 
     @Override
     public void Execute() {
-        
+        actor.use(actuator);
     }
 }

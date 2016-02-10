@@ -1,8 +1,10 @@
 package sk.tuke.oop.game;
 
+import sk.tuke.oop.framework.Message;
 import sk.tuke.oop.game.actors.Ripley;
 import sk.tuke.oop.game.actors.Alien;
 import sk.tuke.oop.framework.SlickWorld;
+import sk.tuke.oop.game.actors.Ventilator;
 import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
 
@@ -24,6 +26,9 @@ public class Main {
         Energy energy = new Energy();
         Ammo ammo = new Ammo();
         Ammo ammo2 = new Ammo();
+        Ventilator ventilator = new Ventilator();
+        Ventilator ventilator2 = new Ventilator();
+        
         
         
         
@@ -39,12 +44,19 @@ public class Main {
         ammo.setPosition(400, 200);
         ammo2.setPosition(300, 200);
         
+        ventilator.setPosition(100, 100);
+        ventilator2.setPosition(100, 130);
+        
+        
         slickWorld.addActor(ripley);
         slickWorld.addActor(energy);
         slickWorld.addActor(ammo);
         slickWorld.addActor(ammo2);
         slickWorld.addActor(alien);
+        slickWorld.addActor(ventilator);
+        slickWorld.addActor(ventilator2);
         slickWorld.run();
+        
     }
     
 }

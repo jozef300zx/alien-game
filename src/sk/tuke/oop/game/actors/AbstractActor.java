@@ -5,6 +5,8 @@
  */
 package sk.tuke.oop.game.actors;
 
+import java.util.ArrayList;
+import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Input;
@@ -34,6 +36,7 @@ public abstract class AbstractActor implements Actor {
     Move moveUpRight;
     Move moveUpLeft;
     World world;
+    List intersectingActors = new ArrayList<>();
 
     public AbstractActor() {
     }
@@ -107,6 +110,19 @@ public abstract class AbstractActor implements Actor {
     public String toString()
     {
         return this.name + " " + this.getX() + " " + this.getY() + " " + this.getAnimation().getRotation();
+    }
+    
+    public List getIntersectingActors()
+    {
+        
+        
+        for(Actor actor : getWorld())
+        {
+            if(this.intersects(actor))
+                intersectingActors.add(actor);
+        }
+        
+        return intersectingActors;
     }
     
 }

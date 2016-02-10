@@ -5,6 +5,7 @@
  */
 package sk.tuke.oop.game.actors;
 
+import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.commands.Move;
 
@@ -16,7 +17,7 @@ public class Alien extends AbstractActor implements Movable{
 
     int movementInterval;
     double i;
-
+    Ripley ripley;
     
     public Alien()
     {
@@ -31,6 +32,16 @@ public class Alien extends AbstractActor implements Movable{
     @Override
     public void act() { 
         normalAnimation.stop();
+        if(ripley == null)
+        {
+            for(Actor actor : getWorld())
+            {
+                if(actor instanceof Ripley)
+                {
+                    ripley = (Ripley) actor;
+                }
+            }
+        }
         if(moveUp == null)
         {
             moveUp = new Move(this,1,0,-1);
@@ -115,5 +126,11 @@ public class Alien extends AbstractActor implements Movable{
             
         movementInterval -=1;
         
+        if(this.intersects(ripley))
+        {
+            ripley.setHealth(ripley.getHealth() - 1);
+            System.out.println(ripley.getHealth());
+        }
     } 
 }
+

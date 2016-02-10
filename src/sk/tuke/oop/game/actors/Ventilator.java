@@ -19,15 +19,19 @@ public class Ventilator extends AbstractActor implements Usable {
     {
         normalAnimation = new Animation("resources/sprites/ventilator.png",32,32,100);
         setAnimation(normalAnimation);
+        this.switchedOn = false;
+        normalAnimation.stop();
     }
     @Override
     public void use(Actor actor) {
         if(this.switchedOn)
         {
             normalAnimation.stop();
+            this.switchedOn = false;
         } else
         {
             normalAnimation.start();
+            this.switchedOn = true;
         }
         
     }

@@ -5,9 +5,11 @@
  */
 package sk.tuke.oop.game.actors;
 
+import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Input;
 import sk.tuke.oop.game.commands.Move;
+import sk.tuke.oop.game.commands.Use;
 
 /**
  *
@@ -16,6 +18,7 @@ import sk.tuke.oop.game.commands.Move;
 public class Ripley extends AbstractActor implements Movable{
     private int health;
     private int ammo;
+    private Use use;
     
     public Ripley()
     {
@@ -85,7 +88,21 @@ public class Ripley extends AbstractActor implements Movable{
         
         if (input.isKeyPressed(Input.Key.E))
         {
-            
+            for(Actor actor : getWorld())
+            {
+                if(actor instanceof Usable && this.intersects(actor))
+                {
+                    use = new Use(actor,this);
+                    use.Execute();
+                } 
+
+            }
+        }
+        
+        
+        if(this.health <= 0)
+        {
+            System.exit(0);
         }
     }
 
