@@ -25,7 +25,7 @@ public abstract class AbstractActor implements Actor {
     int width;
     int step;
     String name;
-    Animation normalAnimation;
+    public Animation normalAnimation;
     Input input;
     Move moveUp;
     Move moveDown;

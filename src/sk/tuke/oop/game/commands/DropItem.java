@@ -5,7 +5,7 @@
  */
 package sk.tuke.oop.game.commands;
 
-import sk.tuke.oop.framework.Item;
+import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.World;
 import sk.tuke.oop.game.items.BackpackImpl;
 
@@ -28,9 +28,22 @@ public class DropItem implements Command {
 
     @Override
     public void Execute() {
+        boolean canDrop = false;
+        
+        for(Actor actor : world)
+        {
+            if(!this.backpack.getLastItem().intersects(actor))
+            {
+                canDrop = true;
+            }
+        }
+        
+        if(canDrop)
+        {
         this.world.addActor(backpack.getLastItem());
         this.backpack.getLastItem().setPosition(x, y);
         this.backpack.remove(backpack.getLastItem());   
+        }
     }
     
 }
