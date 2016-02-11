@@ -8,8 +8,13 @@ package sk.tuke.oop.game.actors;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Input;
+import sk.tuke.oop.framework.Item;
+import sk.tuke.oop.framework.World;
+import sk.tuke.oop.game.commands.DropItem;
 import sk.tuke.oop.game.commands.Move;
+import sk.tuke.oop.game.commands.TakeItem;
 import sk.tuke.oop.game.commands.Use;
+import sk.tuke.oop.game.items.BackpackImpl;
 
 /**
  *
@@ -19,6 +24,9 @@ public class Ripley extends AbstractActor implements Movable{
     private int health;
     private int ammo;
     private Use use;
+    private TakeItem takeItem;
+    private DropItem dropItem;
+    private BackpackImpl backpack;
     
     public Ripley()
     {
@@ -27,6 +35,7 @@ public class Ripley extends AbstractActor implements Movable{
         setAnimation(normalAnimation);
         this.health = 100;
         this.ammo = 100;
+        this.backpack = new BackpackImpl(3);
     }
     
         public void act() {
@@ -99,6 +108,63 @@ public class Ripley extends AbstractActor implements Movable{
             }
         }
         
+        if (input.isKeyPressed(Input.Key.ENTER))
+        {
+            for(Actor actor : getWorld())
+            {
+                if(actor instanceof Item && this.intersects(actor))
+                {
+                    takeItem = new TakeItem(backpack, (Item) actor);
+                } 
+            }
+        }       
+        
+        if (input.isKeyPressed(Input.Key.BACK))
+        {
+            int droppedX,droppedY;
+            if(this.getAnimation().getRotation() == 0)
+            {
+                droppedX = this.getX() + this.getWidth()/2;
+                droppedY = this.getY();
+            }
+            if(this.getAnimation().getRotation() == 45)
+            {
+                droppedX = this.getX() + this.getWidth();
+                droppedY = this.getY();
+            }
+            if(this.getAnimation().getRotation() == 90)
+            {
+                droppedX = this.getX() + this.getWidth();
+                droppedY = this.getY() + this.getHeight()/2;
+            }
+            if(this.getAnimation().getRotation() == 135)
+            {
+                droppedX = this.getX() + this.getWidth();
+                droppedY = this.getY() + this.getHeight();
+            }    
+            if(this.getAnimation().getRotation() == 180)
+            {
+                droppedX = this.getX() + this.getWidth()/2;
+                droppedY = this.getY() + this.getHeight();
+            }  
+            if(this.getAnimation().getRotation() == 225)
+            {
+                droppedX = this.getX();
+                droppedY = this.getY() + this.getHeight();
+            }    
+            if(this.getAnimation().getRotation() == 270)
+            {
+                droppedX = this.getX();
+                droppedY = this.getY() + this.getHeight()/2;
+            } 
+            if(this.getAnimation().getRotation() == 315)
+            {
+                droppedX = this.getX();
+                droppedY = this.getY();
+            }            
+            dropItem = new DropItem(this.backpack,this.world,this.getX(),this.getY());
+        }           
+        
         
         if(this.health <= 0)
         {
@@ -122,6 +188,11 @@ public class Ripley extends AbstractActor implements Movable{
         this.ammo = ammo;
     }
 
+    public void addedToWorld(World world) {
+        this.world = world;
+        this.world.showBackpack(backpack);
+        
+    }
 
     
 
