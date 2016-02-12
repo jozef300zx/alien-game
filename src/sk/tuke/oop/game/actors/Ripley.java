@@ -105,10 +105,12 @@ public class Ripley extends AbstractActor implements Movable{
                 if(actor instanceof Usable && this.intersects(actor))
                 {
                     use = new Use(actor,this);
-                    use.Execute();
+                    //use.Execute();
                 } 
 
             }
+            if(use != null)
+            use.Execute();
         }
         
         if (input.isKeyPressed(Input.Key.ENTER))
@@ -118,14 +120,18 @@ public class Ripley extends AbstractActor implements Movable{
                 if(actor instanceof Item && this.intersects(actor))
                 {
                     takeItem = new TakeItem(backpack, (Item) actor);
-                    takeItem.Execute();
+                    //takeItem.Execute();
                 } 
             }
+            if(takeItem != null)
+            takeItem.Execute();
         }       
         
         if (input.isKeyPressed(Input.Key.BACK))
         {
-            int droppedX,droppedY;
+            int droppedX = this.getX();
+            int droppedY = this.getY(); 
+            
             if(this.getAnimation().getRotation() == 0)
             {
                 droppedX = (this.getX() + this.getWidth()/2) - backpack.getLastItem().getWidth()/2;
@@ -166,11 +172,7 @@ public class Ripley extends AbstractActor implements Movable{
                 droppedX = this.getX() - backpack.getLastItem().getWidth();
                 droppedY = this.getY() - backpack.getLastItem().getHeight();
             }
-            else
-            {
-                droppedX = this.getX();
-                droppedY = this.getY(); 
-            }
+
             dropItem = new DropItem(this.backpack,this.world,droppedX,droppedY);
             dropItem.Execute();
         }

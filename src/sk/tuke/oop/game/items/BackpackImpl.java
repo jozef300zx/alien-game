@@ -18,7 +18,7 @@ import sk.tuke.oop.framework.Item;
  */
 public class BackpackImpl implements Backpack{
     int capacity;
-    List<Item> items = new ArrayList<>(); 
+    public List<Item> items = new ArrayList<>(); 
     Iterator<Item> iterator = items.iterator();
     
     
