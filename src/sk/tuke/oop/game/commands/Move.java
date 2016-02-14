@@ -27,7 +27,6 @@ public class Move implements Command{
 
     @Override
     public void Execute() {
-        actor.getAnimation().start();
         if(dx == 0 && dy == -1)
         {
         actor.setPosition(actor.getX(), actor.getY() - step);
@@ -35,6 +34,10 @@ public class Move implements Command{
             {
                actor.getAnimation().setRotation(0);
             }
+        if(actor.getWorld().intersectWithWall(actor))
+        {
+            actor.setPosition(actor.getX(), actor.getY() + step);
+        }
         }
         
         if(dx == 0 && dy == 1)
@@ -44,6 +47,10 @@ public class Move implements Command{
             {
                actor.getAnimation().setRotation(180);
             }
+        if(actor.getWorld().intersectWithWall(actor))
+        {
+            actor.setPosition(actor.getX(), actor.getY() - step);
+        }            
         }
         
         if(dx == 1 && dy == 0)
@@ -53,6 +60,10 @@ public class Move implements Command{
             {
                actor.getAnimation().setRotation(90);
             }
+        if(actor.getWorld().intersectWithWall(actor))
+        {
+            actor.setPosition(actor.getX() - step, actor.getY());
+        }            
         }
         
         if(dx == -1 && dy == 0)
@@ -62,6 +73,10 @@ public class Move implements Command{
             {
                actor.getAnimation().setRotation(270);
             }
+        if(actor.getWorld().intersectWithWall(actor))
+        {
+            actor.setPosition(actor.getX() + step, actor.getY());
+        }            
         }
         
         if(dx == 1 && dy == 1)
@@ -71,6 +86,10 @@ public class Move implements Command{
             {
                actor.getAnimation().setRotation(135);
             }
+        if(actor.getWorld().intersectWithWall(actor))
+        {
+            actor.setPosition(actor.getX() - step, actor.getY() - step);
+        }            
         }
         
         if(dx == -1 && dy == 1)
@@ -80,6 +99,10 @@ public class Move implements Command{
             {
                actor.getAnimation().setRotation(225);
             }
+        if(actor.getWorld().intersectWithWall(actor))
+        {
+            actor.setPosition(actor.getX() + step, actor.getY() - step);
+        }            
         }        
         
         if(dx == -1 && dy == -1)
@@ -89,6 +112,10 @@ public class Move implements Command{
             {
                actor.getAnimation().setRotation(315);
             }
+        if(actor.getWorld().intersectWithWall(actor))
+        {
+            actor.setPosition(actor.getX() + step, actor.getY() + step);
+        }            
         }   
         if(dx == 1 && dy == -1)
         {
@@ -97,7 +124,12 @@ public class Move implements Command{
             {
                actor.getAnimation().setRotation(45);
             }
+        if(actor.getWorld().intersectWithWall(actor))
+        {
+            actor.setPosition(actor.getX() - step, actor.getY() + step);
         }            
+        }
+    actor.getAnimation().start();    
     }
     
 }

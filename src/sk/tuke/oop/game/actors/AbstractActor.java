@@ -107,6 +107,10 @@ public abstract class AbstractActor implements Actor {
         return this.name;
     }
     
+    public void setName(String name) {
+        this.name = name;
+    }    
+    
     public String toString()
     {
         return this.name + " " + this.getX() + " " + this.getY() + " " + this.getAnimation().getRotation();
@@ -123,6 +127,17 @@ public abstract class AbstractActor implements Actor {
         }
         
         return intersectingActors;
+    }
+    
+    public Actor getActorByName(String name)
+    {
+        if(this.name.equals(name))
+        {
+            return this;
+        } else {
+            return null;
+        }
+        
     }
     
 }

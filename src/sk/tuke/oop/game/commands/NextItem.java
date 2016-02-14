@@ -13,8 +13,7 @@ import sk.tuke.oop.game.items.BackpackImpl;
  * @author admin
  */
 public class NextItem implements Command {
-BackpackImpl backpack;
-Item item;
+private BackpackImpl backpack;
 
     public NextItem(BackpackImpl backpack)
     {
@@ -22,9 +21,10 @@ Item item;
     }
     @Override
     public void Execute() {
-        this.item = this.backpack.getLastItem();
+        
+        Item item = this.backpack.getLastItem();
         this.backpack.remove(item);
-        this.backpack.add(item);
+        this.backpack.items.add(item);
     }
     
 }

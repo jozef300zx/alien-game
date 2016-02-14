@@ -19,7 +19,6 @@ import sk.tuke.oop.framework.Item;
 public class BackpackImpl implements Backpack{
     int capacity;
     public List<Item> items = new ArrayList<>(); 
-    Iterator<Item> iterator = items.iterator();
     
     
     public BackpackImpl(int capacity)
@@ -54,7 +53,7 @@ public class BackpackImpl implements Backpack{
 
     @Override
     public Iterator<Item> iterator() {
-        return this.iterator;
+        return items.iterator();
     }
     
     public Item getLastItem()

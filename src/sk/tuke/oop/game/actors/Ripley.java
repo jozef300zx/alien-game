@@ -5,6 +5,8 @@
  */
 package sk.tuke.oop.game.actors;
 
+import java.util.ArrayList;
+import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Input;
@@ -24,7 +26,7 @@ import sk.tuke.oop.game.items.BackpackImpl;
 public class Ripley extends AbstractActor implements Movable{
     private int health;
     private int ammo;
-    private Use use;
+    //private Use use;
     private TakeItem takeItem;
     private DropItem dropItem;
     private NextItem nextItem;
@@ -100,38 +102,57 @@ public class Ripley extends AbstractActor implements Movable{
         
         if (input.isKeyPressed(Input.Key.E))
         {
+            List<Use> usables = new ArrayList<>();
+            
             for(Actor actor : getWorld())
             {
-                if(actor instanceof Usable && this.intersects(actor))
+                if(this.backpack.items.size() > 0)
                 {
-                    use = new Use(actor,this);
-                    //use.Execute();
+                if(this.intersects(actor) && this.backpack.getLastItem() instanceof Usable)
+                {
+                    usables.add(new Use(this.backpack.getLastItem(),actor));
+                }
+                }
+                
+                if(actor instanceof Usable && this.intersects(actor) && actor != this)
+                {
+                    usables.add(new Use(actor,this));
                 } 
 
             }
-            if(use != null)
-            use.Execute();
+            if(usables.size() > 0)
+            {
+                for(Use use : usables)
+                {
+                    use.Execute();
+                }
+            }
+            
         }
         
         if (input.isKeyPressed(Input.Key.ENTER))
         {
+            Actor itemToBeRemoved = null;
             for(Actor actor : getWorld())
             {
                 if(actor instanceof Item && this.intersects(actor))
                 {
                     takeItem = new TakeItem(backpack, (Item) actor);
-                    //takeItem.Execute();
+                    itemToBeRemoved = actor;
                 } 
             }
-            if(takeItem != null)
+            if(takeItem != null && itemToBeRemoved != null) {
             takeItem.Execute();
+            getWorld().removeActor(itemToBeRemoved);
+            }
+            
         }       
         
         if (input.isKeyPressed(Input.Key.BACK))
         {
             int droppedX = this.getX();
             int droppedY = this.getY(); 
-            
+            if(this.backpack.items.size() > 0) {
             if(this.getAnimation().getRotation() == 0)
             {
                 droppedX = (this.getX() + this.getWidth()/2) - backpack.getLastItem().getWidth()/2;
@@ -175,12 +196,17 @@ public class Ripley extends AbstractActor implements Movable{
 
             dropItem = new DropItem(this.backpack,this.world,droppedX,droppedY);
             dropItem.Execute();
+            }
         }
         
         if (input.isKeyPressed(Input.Key.N))
         {
+            if(backpack.items.size() > 0)
+            {
             nextItem = new NextItem(this.backpack);
             nextItem.Execute();
+            getWorld().showBackpack(backpack);
+            }
         }          
         
         
@@ -210,6 +236,7 @@ public class Ripley extends AbstractActor implements Movable{
     public void addedToWorld(World world) {
         this.world = world;
         this.world.showBackpack(backpack);
+        this.world.centerOn(this);
         
     }
 

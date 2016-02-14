@@ -23,7 +23,6 @@ public class TakeItem implements Command {
     @Override
     public void Execute() {
         backpack.add(item);
-        item.getWorld().removeActor(item);
     }
     
 }
