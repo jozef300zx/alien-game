@@ -7,6 +7,7 @@ package sk.tuke.oop.game.actors;
 
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.ActorFactory;
+import sk.tuke.oop.game.items.AccessCard;
 import sk.tuke.oop.game.items.Energy;
 
 /**
@@ -27,8 +28,9 @@ public class ActorFactoryImpl implements ActorFactory {
         switch(string){
             case "access card" : 
             {
-                
-                return null;
+                actor = new AccessCard();
+                ((AbstractActor) actor).setName(string1);
+                return actor;
             }
             case "energy" : 
             {
@@ -42,14 +44,24 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setName(string1);
                 return actor;
             }
-            case "door" : return null;
+            case "door" : 
+            {  
+                actor = new Door();
+                ((AbstractActor) actor).setName(string1);
+                return actor;
+            }     
             case "ellen" : 
             {
                 actor = new Ripley();
                 ((AbstractActor) actor).setName(string1);
                 return actor;
             }                
-            case "locker" : return null;
+            case "locker" : 
+            {
+                actor = new Locker();
+                ((AbstractActor) actor).setName(string1);
+                return actor;
+            }
             default: return null;
         }
         }

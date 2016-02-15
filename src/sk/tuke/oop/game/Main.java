@@ -7,6 +7,7 @@ import sk.tuke.oop.framework.SlickWorld;
 import sk.tuke.oop.game.actors.ActorFactoryImpl;
 import sk.tuke.oop.game.actors.Body;
 import sk.tuke.oop.game.actors.Cooler;
+import sk.tuke.oop.game.actors.Door;
 import sk.tuke.oop.game.actors.Ventilator;
 import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
@@ -74,7 +75,18 @@ public class Main {
         
         
         slickWorld.setFactory(factory);
+        
+
+        
         slickWorld.setMap("/resources/levels/level02.xml");
+        for(Actor actor : slickWorld){
+            if(actor instanceof Door){
+            slickWorld.setWall(6, 4, true);
+            slickWorld.setWall(6, 5, true);
+            }
+        }        
+        
+        
         slickWorld.run();
       
         
