@@ -7,38 +7,63 @@ package sk.tuke.oop.game.actors;
 
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
+import sk.tuke.oop.game.items.AccessCard;
+import sk.tuke.oop.game.items.Hammer;
 
 /**
  *
  * @author jmorvay
  */
 public class Door extends AbstractActor implements Usable,Openable{
+    boolean isOpen;
+    boolean isLocked;
     
     public Door() {
         normalAnimation = new Animation("resources/sprites/vdoor.png",16,32,100);
-        normalAnimation.setPingPong(true);
         setAnimation(normalAnimation);     
         normalAnimation.stop();
+        normalAnimation.setLooping(false);
+        isOpen = false;
+        isLocked = true;
     }
 
     @Override
     public void use(Actor actor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void open() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!this.isLocked){
+        normalAnimation.start();
+        getWorld().setWall(6, 4, false);
+        getWorld().setWall(6, 5, false);
+        }
     }
 
     @Override
     public void close() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*
+        if(!this.isLocked){
+        normalAnimation.start();
+        getWorld().setWall(6, 4, true);
+        getWorld().setWall(6, 5, true);
+        }
+*/
     }
 
     @Override
     public boolean isOpen(Actor actor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            return this.isOpen;
+    }
+    
+    public boolean isLocked() {
+            return this.isLocked;
+    }
+    
+    public void setLock(boolean locked) {
+        this.isLocked = locked;
+          
     }
     
 }

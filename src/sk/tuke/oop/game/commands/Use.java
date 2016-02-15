@@ -6,6 +6,8 @@
 package sk.tuke.oop.game.commands;
 
 import sk.tuke.oop.framework.Actor;
+import sk.tuke.oop.framework.Item;
+import sk.tuke.oop.game.actors.Openable;
 import sk.tuke.oop.game.actors.Usable;
 
 /**
@@ -13,17 +15,33 @@ import sk.tuke.oop.game.actors.Usable;
  * @author admin
  */
 public class Use implements Command {
-    Usable actor;
+    Actor actor;
     Actor actuator;
     
     public Use(Actor actor, Actor actuator)
     {
-        this.actor = (Usable) actor;
+        this.actor = actor;
         this.actuator = actuator;
     }
 
     @Override
     public void Execute() {
-        actor.use(actuator);
+        if(actor instanceof Usable)
+        ((Usable) actor).use(actuator);
+               
+        if(actor instanceof Openable){
+            
+            if(!((Openable) actor).isOpen(actor)){
+                ((Openable) actor).open();
+            } else {
+                ((Openable) actor).close();
+            }
+            
+        }
+        
+        
+        
     }
+
+    
 }

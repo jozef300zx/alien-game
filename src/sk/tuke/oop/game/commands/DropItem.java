@@ -40,7 +40,7 @@ public class DropItem implements Command {
         intersects = false;
         for(Actor actor : world)
         {
-            if(this.backpack.getLastItem().intersects(actor) && this.backpack.getLastItem() != actor && !(actor instanceof Ripley))
+            if((this.backpack.getLastItem().intersects(actor) || this.backpack.getLastItem().getWorld().intersectWithWall(this.backpack.getLastItem()))&& this.backpack.getLastItem() != actor && !(actor instanceof Ripley))
             {
                 this.backpack.getLastItem().setPosition(this.backpack.getLastItem().getX() + this.backpack.getLastItem().getWidth() + 1, this.backpack.getLastItem().getY());
                 intersects = true;

@@ -17,6 +17,7 @@ import sk.tuke.oop.game.commands.Move;
 import sk.tuke.oop.game.commands.NextItem;
 import sk.tuke.oop.game.commands.TakeItem;
 import sk.tuke.oop.game.commands.Use;
+import sk.tuke.oop.game.items.AccessCard;
 import sk.tuke.oop.game.items.BackpackImpl;
 
 /**
@@ -39,7 +40,7 @@ public class Ripley extends AbstractActor implements Movable{
         setAnimation(normalAnimation);
         this.health = 100;
         this.ammo = 100;
-        this.backpack = new BackpackImpl(3);
+        this.backpack = new BackpackImpl(10);
     }
     
     @Override
@@ -103,6 +104,7 @@ public class Ripley extends AbstractActor implements Movable{
         if (input.isKeyPressed(Input.Key.E))
         {
             List<Use> usables = new ArrayList<>();
+            Item toRemove = null;
             
             for(Actor actor : getWorld())
             {
@@ -111,6 +113,9 @@ public class Ripley extends AbstractActor implements Movable{
                 if(this.intersects(actor) && this.backpack.getLastItem() instanceof Usable)
                 {
                     usables.add(new Use(this.backpack.getLastItem(),actor));
+                    if(this.backpack.getLastItem() instanceof AccessCard){
+                        toRemove = this.backpack.getLastItem();
+                    }
                 }
                 }
                 
@@ -127,6 +132,8 @@ public class Ripley extends AbstractActor implements Movable{
                     use.Execute();
                 }
             }
+            if(toRemove != null)
+            this.backpack.items.remove(toRemove);
             
         }
         

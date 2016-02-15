@@ -7,6 +7,7 @@ package sk.tuke.oop.game.actors;
 
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
+import sk.tuke.oop.game.items.Hammer;
 import sk.tuke.oop.game.items.Wrench;
 
 /**
@@ -32,7 +33,7 @@ public class Cooler extends AbstractActor implements Repairable{
 
     @Override
     public void repair(Actor actor) {
-        if(actor instanceof Wrench)
+        if(actor instanceof Hammer)
         {
         this.broken = false;
         normalAnimation.start();

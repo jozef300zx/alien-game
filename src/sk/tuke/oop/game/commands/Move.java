@@ -66,7 +66,7 @@ public class Move implements Command{
         {
             moveNorthEast();
         }
-    actor.getAnimation().start();    
+       
     }
  
     public void moveNorth(){
@@ -75,12 +75,8 @@ public class Move implements Command{
         {
             actor.setPosition(actor.getX(), actor.getY() + step);
         } else {        
-            if (actor.getAnimation().getRotation() != 0)
-            {
-               actor.getAnimation().setRotation(0);
-            }
+            turnAnimation(0);
         }
-
     }
     
     public void moveSouth(){
@@ -89,10 +85,7 @@ public class Move implements Command{
         {
             actor.setPosition(actor.getX(), actor.getY() - step);
         } else {        
-            if (actor.getAnimation().getRotation() != 180)
-            {
-               actor.getAnimation().setRotation(180);
-            }
+            turnAnimation(180);
         }
 
     }
@@ -103,10 +96,7 @@ public class Move implements Command{
         {
             actor.setPosition(actor.getX() - step, actor.getY());
         } else {                
-            if (actor.getAnimation().getRotation() != 90)
-            {
-               actor.getAnimation().setRotation(90);
-            }
+            turnAnimation(90);
         }
    
     }
@@ -117,10 +107,7 @@ public class Move implements Command{
         {
             actor.setPosition(actor.getX() + step, actor.getY());
         } else {        
-            if (actor.getAnimation().getRotation() != 270)
-            {
-               actor.getAnimation().setRotation(270);
-            }
+            turnAnimation(270);
         }
 
     }
@@ -133,10 +120,7 @@ public class Move implements Command{
             moveSouth();
             moveEast();
         } else {          
-            if (actor.getAnimation().getRotation() != 135)
-            {
-               actor.getAnimation().setRotation(135);
-            }
+            turnAnimation(135);
         }
          
     }
@@ -149,10 +133,7 @@ public class Move implements Command{
             moveSouth();
             moveWest();
         } else {         
-            if (actor.getAnimation().getRotation() != 225)
-            {
-               actor.getAnimation().setRotation(225);
-            }
+            turnAnimation(225);
         }
      
     }
@@ -165,10 +146,7 @@ public class Move implements Command{
             moveNorth();
             moveWest();
         } else {   
-            if (actor.getAnimation().getRotation() != 315)
-            {
-               actor.getAnimation().setRotation(315);
-            }
+            turnAnimation(315);
         }
                 
     }
@@ -181,11 +159,17 @@ public class Move implements Command{
             moveNorth();
             moveEast();
         } else {         
-            if (actor.getAnimation().getRotation() != 45)
-            {
-               actor.getAnimation().setRotation(45);
-            }
+            turnAnimation(45);
         }
       
+    }
+    
+    public void turnAnimation(int angle){
+            if (actor.getAnimation().getRotation() != angle)
+            {
+               actor.getAnimation().setRotation(angle);
+            }
+            
+            actor.getAnimation().start(); 
     }
 }
