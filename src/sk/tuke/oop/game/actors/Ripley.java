@@ -32,6 +32,8 @@ public class Ripley extends AbstractActor implements Movable{
     private DropItem dropItem;
     private NextItem nextItem;
     private final BackpackImpl backpack;
+    boolean poisoned;
+    int gametime;
     
     public Ripley()
     {
@@ -41,10 +43,13 @@ public class Ripley extends AbstractActor implements Movable{
         this.health = 100;
         this.ammo = 100;
         this.backpack = new BackpackImpl(10);
+        poisoned = false;
+        gametime = 0;
     }
     
     @Override
         public void act() {
+        gametime +=1;
         input = Input.getInstance();
         normalAnimation.stop();
         //inicializacia
@@ -216,11 +221,8 @@ public class Ripley extends AbstractActor implements Movable{
             }
         }          
         
-        
-        if(this.health <= 0)
-        {
-            System.exit(0);
-        }
+        drawHealth(gametime);
+            
     }
 
     public int getHealth() {
@@ -246,8 +248,42 @@ public class Ripley extends AbstractActor implements Movable{
         this.world.centerOn(this);
         
     }
-
     
-
+    public boolean isPoisoned(Cooler cooler, Door door) {
+        return cooler.isBroken() && door.isOpen();
+    }        
     
+    public Cooler getCooler(){
+        Cooler returnCooler = null;
+        for(Actor actor : getWorld()){
+            if(actor instanceof Cooler){
+                returnCooler = (Cooler) actor;
+            } 
+        }
+        return returnCooler;
+    }
+    
+    public Door getDoor(){
+        Door returnDoor = null;
+        for(Actor actor : getWorld()){
+            if(actor instanceof Door){
+                returnDoor = (Door) actor;
+            } 
+        }
+        return returnDoor;
+    }  
+    
+    public void drawHealth(int time){
+        if(isPoisoned(getCooler(),getDoor()) && (time % 10) == 0){
+            this.health -= 2;
+            System.out.println(this.health);
+        }
+    }
+
+
 }
+
+    
+
+    
+

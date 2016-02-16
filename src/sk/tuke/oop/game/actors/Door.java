@@ -36,6 +36,7 @@ public class Door extends AbstractActor implements Usable,Openable{
     public void open() {
         if(!this.isLocked){
         normalAnimation.start();
+        isOpen = true;
         getWorld().setWall(6, 4, false);
         getWorld().setWall(6, 5, false);
         }
@@ -52,8 +53,14 @@ public class Door extends AbstractActor implements Usable,Openable{
 */
     }
 
+    
     @Override
     public boolean isOpen(Actor actor) {
+            return this.isOpen;
+    }
+
+    
+    public boolean isOpen() {
             return this.isOpen;
     }
     
