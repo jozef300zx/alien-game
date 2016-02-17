@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
+import sk.tuke.oop.framework.Backpack;
 import sk.tuke.oop.framework.Input;
 import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.framework.World;
@@ -27,17 +28,19 @@ import sk.tuke.oop.game.items.BackpackImpl;
 public class Ripley extends AbstractActor implements Movable{
     private int health;
     private int ammo;
-    //private Use use;
+    int countdown;
     private TakeItem takeItem;
     private DropItem dropItem;
     private NextItem nextItem;
-    private final BackpackImpl backpack;
+    private BackpackImpl backpack;
     boolean poisoned;
     int gametime;
+    Animation deadAnimation;
     
     public Ripley()
     {
         normalAnimation = new Animation("resources/sprites/player.png",32,32,100);
+        deadAnimation = new Animation("resources/sprites/player_die.png",32,32,100);
         normalAnimation.setPingPong(true);
         setAnimation(normalAnimation);
         this.health = 100;
@@ -81,6 +84,9 @@ public class Ripley extends AbstractActor implements Movable{
         if (input.isKeyPressed(Input.Key.ESCAPE)) {
             System.exit(0);
         }
+        
+        if(this.health > 0){
+        
         if (input.isKeyDown(Input.Key.UP) == false && input.isKeyDown(Input.Key.DOWN) && input.isKeyDown(Input.Key.RIGHT) && input.isKeyDown(Input.Key.LEFT) == false) {
             moveDownRight.Execute();
         }
@@ -115,7 +121,7 @@ public class Ripley extends AbstractActor implements Movable{
             {
                 if(this.backpack.items.size() > 0)
                 {
-                if(this.intersects(actor) && this.backpack.getLastItem() instanceof Usable)
+                if(this.intersects(actor) && this.backpack.getLastItem() instanceof Usable && actor != this)
                 {
                     usables.add(new Use(this.backpack.getLastItem(),actor));
                     if(this.backpack.getLastItem() instanceof AccessCard){
@@ -137,8 +143,8 @@ public class Ripley extends AbstractActor implements Movable{
                     use.Execute();
                 }
             }
-            if(toRemove != null)
-            this.backpack.items.remove(toRemove);
+            //if(toRemove != null)
+            //this.backpack.items.remove(toRemove);
             
         }
         
@@ -219,10 +225,13 @@ public class Ripley extends AbstractActor implements Movable{
             nextItem.Execute();
             getWorld().showBackpack(backpack);
             }
-        }          
+        }
+        
         
         drawHealth(gametime);
-            
+        }
+        
+        Dead();
     }
 
     public int getHealth() {
@@ -276,8 +285,28 @@ public class Ripley extends AbstractActor implements Movable{
     public void drawHealth(int time){
         if(isPoisoned(getCooler(),getDoor()) && (time % 10) == 0){
             this.health -= 2;
+            if(this.health <= 0)
+                this.health = 0;
             System.out.println(this.health);
         }
+    }
+    
+    public void Dead(){
+    if(this.health == 0) {
+        if(this.getAnimation() != deadAnimation) {
+        countdown = this.gametime;
+        setAnimation(deadAnimation);
+    }
+        deadAnimation.start();
+
+    
+    if(gametime - countdown > 100)
+        System.exit(0);
+    }
+    }
+    
+    public BackpackImpl getBackpack(){
+        return this.backpack;
     }
 
 
