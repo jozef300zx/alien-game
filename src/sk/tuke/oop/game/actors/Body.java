@@ -42,7 +42,7 @@ public class Body extends AbstractActor implements Usable{
         //for(Item item : backpack)
         for(int i = 0; i < backpackSize; i++)
         {
-            dropItem = new DropItem(backpack, world, this.getX(), this.getY() - (this.backpack.getLastItem().getHeight() +1));
+            dropItem = new DropItem(backpack, getWorld(), this.getX(), this.getY() - (this.backpack.getLastItem().getHeight() +1));
             dropItem.Execute();
         }
         used = true;

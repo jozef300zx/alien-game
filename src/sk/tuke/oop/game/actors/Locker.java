@@ -10,8 +10,6 @@ import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.commands.DropItem;
 import sk.tuke.oop.game.items.BackpackImpl;
 import sk.tuke.oop.game.items.Hammer;
-import sk.tuke.oop.game.items.Money;
-import sk.tuke.oop.game.items.Wrench;
 
 /**
  *
@@ -37,7 +35,7 @@ public class Locker extends AbstractActor implements Usable {
         {
         for(int i = 0; i < backpackSize; i++)
         {
-            dropItem = new DropItem(backpack, world, this.getX() + (this.backpack.getLastItem().getWidth() +1), this.getY());
+            dropItem = new DropItem(backpack, getWorld(), this.getX() + (this.backpack.getLastItem().getWidth() +1), this.getY());
             dropItem.Execute();
         }
         used = true;

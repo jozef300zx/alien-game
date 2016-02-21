@@ -9,7 +9,7 @@ import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.game.actors.AbstractActor;
-import sk.tuke.oop.game.actors.Ripley;
+import sk.tuke.oop.game.actors.ripley.Ripley;
 
 /**
  *

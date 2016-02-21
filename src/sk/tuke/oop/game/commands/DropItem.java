@@ -7,7 +7,7 @@ package sk.tuke.oop.game.commands;
 
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.World;
-import sk.tuke.oop.game.actors.Ripley;
+import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.game.items.BackpackImpl;
 
 /**

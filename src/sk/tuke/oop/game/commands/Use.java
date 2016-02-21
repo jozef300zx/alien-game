@@ -7,7 +7,7 @@ package sk.tuke.oop.game.commands;
 
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Item;
-import sk.tuke.oop.game.actors.Openable;
+import sk.tuke.oop.game.actors.openables.Openable;
 import sk.tuke.oop.game.actors.Usable;
 
 /**
@@ -26,8 +26,9 @@ public class Use implements Command {
 
     @Override
     public void Execute() {
-        if(actor instanceof Usable)
+        if(actor instanceof Usable){
         ((Usable) actor).use(actuator);
+        }
                
         if(actor instanceof Openable){
             

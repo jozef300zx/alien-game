@@ -9,9 +9,9 @@ import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.game.actors.AbstractActor;
-import sk.tuke.oop.game.actors.Door;
-import sk.tuke.oop.game.actors.Ripley;
+import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.game.actors.Usable;
+import sk.tuke.oop.game.actors.openables.LockedDoor;
 
 /**
  *
@@ -26,8 +26,8 @@ public class AccessCard extends AbstractActor implements Usable,Item{
 
     @Override
     public void use(Actor actor) {
-        if(actor instanceof Door && ((Door)actor).isLocked()){
-            ((Door)actor).setLock(false);
+        if(actor instanceof LockedDoor && ((LockedDoor)actor).isLocked()){
+            ((LockedDoor)actor).unlock();
             for (Actor ripley : getWorld()){
                 if(ripley instanceof Ripley){
                     ((Ripley) ripley).getBackpack().items.remove(this);

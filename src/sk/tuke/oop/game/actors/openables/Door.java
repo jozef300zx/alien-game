@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.tuke.oop.game.actors;
+package sk.tuke.oop.game.actors.openables;
 
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
-import sk.tuke.oop.game.items.AccessCard;
-import sk.tuke.oop.game.items.Hammer;
+import sk.tuke.oop.game.actors.AbstractActor;
+import sk.tuke.oop.game.actors.Usable;
 
 /**
  *
@@ -16,15 +16,24 @@ import sk.tuke.oop.game.items.Hammer;
  */
 public class Door extends AbstractActor implements Usable,Openable{
     boolean isOpen;
-    boolean isLocked;
+    private boolean locked;
     
-    public Door() {
+    public Door(String name, boolean vertical) {
+        if(vertical) {
         normalAnimation = new Animation("resources/sprites/vdoor.png",16,32,100);
+        //getWorld().setWall(this.getX() / 16, this.getY() / 16, true);
+        //getWorld().setWall(this.getX() / 16, (this.getY() + 16) / 16, true);
+        } else {
+        normalAnimation = new Animation("resources/sprites/hdoor.png",32,16,100);
+        //getWorld().setWall(this.getX() / 16, this.getY() / 16, true);
+        //getWorld().setWall((this.getX() + 16) / 16, this.getY() / 16, true);         
+        }
         setAnimation(normalAnimation);     
         normalAnimation.stop();
         normalAnimation.setLooping(false);
         isOpen = false;
-        isLocked = true;
+        locked = false;
+        this.setName(name);
     }
 
     @Override
@@ -34,12 +43,20 @@ public class Door extends AbstractActor implements Usable,Openable{
 
     @Override
     public void open() {
-        if(!this.isLocked){
+        if(!isLocked()){
         normalAnimation.start();
         isOpen = true;
-        getWorld().setWall(6, 4, false);
-        getWorld().setWall(6, 5, false);
+        if(getHeight() > getWidth()) {
+        getWorld().setWall(this.getX() / 16, this.getY() / 16, false);
+        getWorld().setWall(this.getX() / 16, (this.getY() + 16) / 16, false);
         }
+        
+        if(getWidth() > getHeight()) {
+        getWorld().setWall(this.getX() / 16, this.getY() / 16, false);
+        getWorld().setWall((this.getX() + 16) / 16, this.getY() / 16, false);    
+        }
+        }
+        
     }
 
     @Override
@@ -63,14 +80,12 @@ public class Door extends AbstractActor implements Usable,Openable{
     public boolean isOpen() {
             return this.isOpen;
     }
-    
+
     public boolean isLocked() {
-            return this.isLocked;
+        return locked;
     }
     
-    public void setLock(boolean locked) {
-        this.isLocked = locked;
-          
-    }
+
+    
     
 }

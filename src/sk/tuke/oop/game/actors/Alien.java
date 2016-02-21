@@ -5,6 +5,7 @@
  */
 package sk.tuke.oop.game.actors;
 
+import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.commands.Move;
@@ -18,6 +19,14 @@ public class Alien extends AbstractActor implements Movable{
     int movementInterval;
     double i;
     Ripley ripley;
+    Move moveUp;
+    Move moveDown;
+    Move moveRight;
+    Move moveLeft;
+    Move moveDownRight;
+    Move moveDownLeft;
+    Move moveUpRight;
+    Move moveUpLeft;    
     
     public Alien()
     {

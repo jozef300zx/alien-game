@@ -6,12 +6,12 @@
 package sk.tuke.oop.game.actors;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Input;
 import sk.tuke.oop.framework.World;
-import sk.tuke.oop.game.commands.Move;
 
 /**
  *
@@ -25,17 +25,10 @@ public abstract class AbstractActor implements Actor {
     int width;
     int step;
     String name;
+    private String type;
     public Animation normalAnimation;
-    Input input;
-    Move moveUp;
-    Move moveDown;
-    Move moveRight;
-    Move moveLeft;
-    Move moveDownRight;
-    Move moveDownLeft;
-    Move moveUpRight;
-    Move moveUpLeft;
-    World world;
+    private Input input;
+    private World world;
     List intersectingActors = new ArrayList<>();
 
     public AbstractActor() {
@@ -94,7 +87,7 @@ public abstract class AbstractActor implements Actor {
 
     @Override
     public void addedToWorld(World world) {
-        this.world = world;
+        this.setWorld(world);
     }
 
     @Override
@@ -131,13 +124,34 @@ public abstract class AbstractActor implements Actor {
     
     public Actor getActorByName(String name)
     {
-        if(this.name.equals(name))
+
+        if(getName().equals(name))
         {
             return this;
         } else {
             return null;
         }
-        
+
+    }
+
+    public Input getInput() {
+        return input;
+    }
+
+    public void setInput(Input input) {
+        this.input = input;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
 }

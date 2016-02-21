@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="10" tilewidth="16" tileheight="16">
+    <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16">
+        <image source="tilesets/tileset01.png" width="320" height="400"/>
+    </tileset>
+    <layer name="background" width="20" height="10">
+        <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA6XRO05CQRSA4ZmKBrQ2IGJHZ8IjLIDgIzZ0Bm+pLVBQ4CLcBKK4Ah9wV6AJry3oGoDWf8K54dwJhoLiyzzunDPnzE0bYzI4RnbP+SHOUEMPT+jjGS/CXw/wijaaeEQeSWtMClXmDbzhHR/4xFD46xFCXEgdWXKcIIdT3Mg9X/jGYocJphLjFMhRRAllu+7XjzlX9+u5+/aDX1kPiR8hxCWuVL/OLQIZZza+15B8S6zk/cacmWCKOuuK2fTrtNQ7t7bs6R6imt14h3tcy/+d23UN0dkoR+D1q+uN9t28iwepryqxzpGNv1/b61fXO5MaAnXG1ZdQ+Q5E6p8xuWOvgz/aqVLEIAMAAA==
+  </data>
+    </layer>
+    <layer name="walls" width="20" height="10">
+        <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA/vCyMDwhcoYBMjRgw6oYR613UeuX2B68QFC+ulhHrHxQY75A2UeJRgAWN/jriADAAA=
+  </data>
+    </layer>
+    <objectgroup name="objects" width="20" height="10">
+        <object name="ellen" type="ripley" x="224" y="16" width="32" height="32"/>
+        <object name="front door" type="vertical" x="176" y="112" width="16" height="32"/>
+        <object name="back door" type="vertical" x="64" y="80" width="16" height="32"/>
+        <object name="wall switch" x="144" y="48" width="16" height="16"/>
+        <object name="floor switch" x="128" y="112" width="16" height="16"/>
+        <object name="exit door" type="horizontal" x="16" y="144" width="32" height="16"/>
+        <object name="lever" x="176" y="80" width="16" height="16"/>
+        <object name="machine" x="112" y="144" width="16" height="16"/>
+        <object name="access card" x="256" y="112" width="16" height="16"/>
+    </objectgroup>
+</map>

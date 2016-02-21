@@ -14,11 +14,11 @@
   </data>
     </layer>
     <objectgroup name="objects" width="20" height="10">
-        <object type="access card" x="224" y="96" width="16" height="16"/>
-        <object type="energy" x="128" y="16" width="16" height="16"/>
-        <object type="cooler" x="16" y="16" width="32" height="32"/>
-        <object type="door" x="96" y="64" width="16" height="32"/>
-        <object type="ellen" name="ripley" x="256" y="112" width="32" height="32"/>
-        <object type="locker" x="112" y="128" width="16" height="16"/>
+        <object name="access card" x="224" y="96" width="16" height="16"/>
+        <object name="energy" x="128" y="16" width="16" height="16"/>
+        <object name="cooler" x="16" y="16" width="32" height="32"/>
+        <object name="door" x="96" y="64" width="16" height="32"/>
+        <object name="ellen" type="ripley" x="256" y="112" width="32" height="32"/>
+        <object name="locker" x="112" y="128" width="16" height="16"/>
     </objectgroup>
 </map>
