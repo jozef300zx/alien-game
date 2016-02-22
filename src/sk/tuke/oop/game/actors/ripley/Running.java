@@ -6,21 +6,20 @@
 package sk.tuke.oop.game.actors.ripley;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Input;
 import sk.tuke.oop.framework.Item;
-import sk.tuke.oop.game.actors.AbstractActor;
+import sk.tuke.oop.framework.Message;
 import sk.tuke.oop.game.actors.Usable;
 import sk.tuke.oop.game.actors.machine.FloorSwitch;
+import sk.tuke.oop.game.actors.machine.Lever;
 import sk.tuke.oop.game.actors.machine.Machine;
 import sk.tuke.oop.game.commands.DropItem;
 import sk.tuke.oop.game.commands.Move;
 import sk.tuke.oop.game.commands.NextItem;
 import sk.tuke.oop.game.commands.TakeItem;
 import sk.tuke.oop.game.commands.Use;
-import sk.tuke.oop.game.items.AccessCard;
 
 /**
  *
@@ -223,8 +222,16 @@ public class Running implements RipleyState{
             if(ripley.intersects(actor) && actor instanceof FloorSwitch){
                 ((FloorSwitch) actor).getMachine().floorSwitchActivated();
             }
+            if(actor instanceof Lever){
+                if(ripley.intersects(actor)) {
+                ripley.getWorld().showMessage(new Message("Hidden lever found!",100,10));
+                } else {
+                ripley.getWorld().showMessage(null);    
+                }
+            }            
         }
     }
+    
     
 }
 

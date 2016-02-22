@@ -10,7 +10,9 @@ import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.ActorFactory;
 import sk.tuke.oop.game.actors.machine.FloorSwitch;
+import sk.tuke.oop.game.actors.machine.Lever;
 import sk.tuke.oop.game.actors.machine.Machine;
+import sk.tuke.oop.game.actors.machine.WallSwitch;
 import sk.tuke.oop.game.actors.openables.ExitDoor;
 import sk.tuke.oop.game.actors.openables.LockedDoor;
 import sk.tuke.oop.game.items.AccessCard;
@@ -101,7 +103,21 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }            
+            }         
+            case "wall switch" : 
+            {
+                actor = new WallSwitch();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }        
+            case "lever" : 
+            {
+                actor = new Lever();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }                 
             default: return null;
         }
         }

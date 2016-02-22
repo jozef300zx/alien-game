@@ -16,7 +16,7 @@ public class Machine extends AbstractActor {
     AbstractMachineState state;
     
     public Machine(){
-        normalAnimation = new Animation("resources/sprites/trap_system.png",16,16,100);
+        normalAnimation = new Animation("resources/sprites/invisible.png",16,16,100);
         setAnimation(normalAnimation);
     }
     
@@ -25,9 +25,11 @@ public void floorSwitchActivated(){
 }
  
 public void wallSwitchActivated(){
+    System.out.println("wallSwitchActivated");
 }
  
 public void leverRetracted(){
+    System.out.println("leverRetracted");
 }
  
 public void act(){
