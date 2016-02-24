@@ -18,7 +18,7 @@
         <object name="front door" type="vertical" x="176" y="112" width="16" height="32"/>
         <object name="back door" type="vertical" x="64" y="80" width="16" height="32"/>
         <object name="wall switch" x="144" y="48" width="16" height="16"/>
-        <object name="floor switch" x="128" y="112" width="16" height="16"/>
+        <object name="floor switch" x="112" y="112" width="16" height="16"/>
         <object name="exit door" type="horizontal" x="16" y="144" width="32" height="16"/>
         <object name="lever" x="176" y="80" width="16" height="16"/>
         <object name="machine" x="112" y="144" width="16" height="16"/>

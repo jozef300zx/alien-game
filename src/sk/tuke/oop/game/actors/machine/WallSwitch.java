@@ -26,7 +26,6 @@ public class WallSwitch extends AbstractActor implements Usable{
     
     public void act(){
         if (machine == null){
-            Actor actor = null;
             Iterator<Actor> iterator = getWorld().iterator();
             do {
             machine = (Machine) ((AbstractActor)iterator.next()).getActorByName("machine");            

@@ -25,7 +25,6 @@ public class FloorSwitch extends AbstractActor{
     
     public void act(){
         if (machine == null){
-            Actor actor = null;
             Iterator<Actor> iterator = getWorld().iterator();
             do {
             machine = (Machine) ((AbstractActor)iterator.next()).getActorByName("machine");            

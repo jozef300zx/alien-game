@@ -6,7 +6,6 @@
 package sk.tuke.oop.game.actors;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;

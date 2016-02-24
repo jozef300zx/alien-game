@@ -11,4 +11,8 @@ package sk.tuke.oop.game.actors.machine;
  */
 public class Locked extends AbstractMachineState{
     
+public AbstractMachineState wallSwitchActivated(){
+    return new Running();
+}
+    
 }

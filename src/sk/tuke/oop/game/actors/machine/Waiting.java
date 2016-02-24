@@ -11,4 +11,12 @@ package sk.tuke.oop.game.actors.machine;
  */
 public class Waiting extends AbstractMachineState{
     
+public AbstractMachineState floorSwitchActivated(){
+    return new Locked();
+}
+
+public AbstractMachineState wallSwitchActivated(){
+    return new Running();
+}
+    
 }

@@ -11,4 +11,8 @@ package sk.tuke.oop.game.actors.machine;
  */
 public class Running extends AbstractMachineState{
     
+    public AbstractMachineState leverRetracted(){
+    return new Reset();
+}
+    
 }

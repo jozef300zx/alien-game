@@ -37,4 +37,6 @@ public class LockedDoor extends Door implements Usable{
         return this.locked;
     }
     
+
+    
 }
