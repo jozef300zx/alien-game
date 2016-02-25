@@ -13,6 +13,7 @@ import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.framework.Message;
 import sk.tuke.oop.game.actors.Bullet;
 import sk.tuke.oop.game.actors.Explosion;
+import sk.tuke.oop.game.actors.LargeExplosion;
 import sk.tuke.oop.game.actors.Usable;
 import sk.tuke.oop.game.actors.machine.FloorSwitch;
 import sk.tuke.oop.game.actors.machine.Lever;
@@ -210,7 +211,7 @@ public class Running implements RipleyState{
                     ripley.setHealth(0);
             }
             
-            if(actor instanceof Explosion){
+            if(actor instanceof Explosion || actor instanceof LargeExplosion){
                 ((Explosion) actor).setTimer(((Explosion) actor).getTimer() - 1);
                 if(((Explosion) actor).getTimer() == 0){
                     toRemove.add(actor);

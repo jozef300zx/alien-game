@@ -37,7 +37,8 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
     }
     
     public void act(){
-        //List<Actor> toRemove = new ArrayList<> ();
+        List<Actor> toRemove = new ArrayList<> ();
+        List<Actor> toAdd = new ArrayList<> ();
         //inicializacia 
         if (moveUp == null) {
             moveUp = new Move(this, 3, 0, -1);
@@ -85,22 +86,28 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
             getWorld().addActor(impact);
             impact.explode();
         }
+        
+        for (Actor actor : getWorld()){
+            if(actor instanceof Enemy && this.intersects(actor)){
+            toRemove.add(this);
+            Explosion impact = new Explosion();
+            impact.setPosition(getX(), getY());
+            impact.getAnimation().setDuration(5);
+            impact.setTimer(5);
+            toAdd.add(impact);
+            impact.explode();
+            ((AbstractCharacter)actor).setHealth(((AbstractCharacter)actor).getHealth() - 10);
+            }
+        }
+        
+        for (Actor actor : toRemove){
+            getWorld().removeActor(actor);
+        }
 
-        /*
-            for (Actor actor : getWorld()){
-                if(actor instanceof Explosion){
-                    ((Explosion) actor).setTimer(((Explosion) actor).getTimer() - 1);
-                    if(((Explosion) actor).getTimer() == 0){
-                        toRemove.add(actor);
-                        
-                    }
-                }
-            }
-            
-            for (Actor actor : toRemove){
-                getWorld().removeActor(actor);
-            }
-        */
+        for (Actor actor : toAdd){
+            getWorld().addActor(actor);
+        }
+
     
     }
 }

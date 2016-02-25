@@ -36,7 +36,7 @@ public class Alien extends AbstractCharacter implements Movable, Enemy{
         step = 2;
         movementInterval = 30;
         i = Math.random();
-        setHealth(50);
+        setHealth(20);
     }
     
     @Override
@@ -138,7 +138,17 @@ public class Alien extends AbstractCharacter implements Movable, Enemy{
         
         if(this.intersects(ripley))
         {
-            //ripley.setHealth(ripley.getHealth() - 1);
+            ripley.setHealth(ripley.getHealth() - 1);
+        }
+        
+        if(getHealth() == 0){
+            getWorld().removeActor(this);
+            LargeExplosion impact = new LargeExplosion();
+            impact.setPosition(getX(), getY());
+            impact.getAnimation().setDuration(10);
+            impact.setTimer(10);
+            getWorld().addActor(impact);
+            impact.explode();            
         }
     } 
 }
