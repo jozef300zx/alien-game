@@ -8,7 +8,7 @@ package sk.tuke.oop.game.actors.ripley;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.World;
-import sk.tuke.oop.game.actors.AbstractActor;
+import sk.tuke.oop.game.actors.AbstractCharacter;
 import sk.tuke.oop.game.actors.Cooler;
 import sk.tuke.oop.game.actors.openables.Door;
 import sk.tuke.oop.game.actors.Movable;
@@ -18,49 +18,47 @@ import sk.tuke.oop.game.items.BackpackImpl;
  *
  * @author admin
  */
-public class Ripley extends AbstractActor implements Movable{
-    private int health;
+public class Ripley extends AbstractCharacter implements Movable{
     private int ammo;
     int countdown;
     private BackpackImpl backpack;
     boolean poisoned;
     int gametime;
-    Animation deadAnimation;
     RipleyState state;
     Running running;
+    Dying dying;
 
     
     public Ripley()
     {
         normalAnimation = new Animation("resources/sprites/player.png",32,32,100);
-        deadAnimation = new Animation("resources/sprites/player_die.png",32,32,100);
         normalAnimation.setPingPong(true);
         setAnimation(normalAnimation);
-        this.health = 100;
+        setHealth(100);
         this.ammo = 100;
         this.backpack = new BackpackImpl(10);
         running = new Running(this);
+        dying = new Dying(this);
         poisoned = false;
         gametime = 0;
     }
     
     @Override
         public void act() {
-        //gametime +=1;
         normalAnimation.stop();
-        running.act();
+        if(getHealth() > 0){
+            state = running;
+        } else {
+            state = dying;
+        }
         
-        //drawHealth(gametime);
-        //Dead();
+        state.act();
+        
+        
+        //running.act();
+        //dying.act();
     }
 
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
 
     public int getAmmo() {
         return ammo;
@@ -104,26 +102,14 @@ public class Ripley extends AbstractActor implements Movable{
     
     public void drawHealth(int time){
         if(isPoisoned(getCooler(),getDoor()) && (time % 10) == 0){
-            this.health -= 2;
-            if(this.health <= 0)
-                this.health = 0;
-            System.out.println(this.health);
+            setHealth(getHealth() - 2);
+            if(getHealth() <= 0)
+                setHealth(0);
+            System.out.println(getHealth());
         }
     }
     
-    public void Dead(){
-    if(this.health == 0) {
-        if(this.getAnimation() != deadAnimation) {
-        countdown = this.gametime;
-        setAnimation(deadAnimation);
-    }
-        deadAnimation.start();
 
-    
-    if(gametime - countdown > 100)
-        System.exit(0);
-    }
-    }
     
     public BackpackImpl getBackpack(){
         return this.backpack;

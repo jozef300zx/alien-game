@@ -14,7 +14,7 @@ import sk.tuke.oop.game.commands.Move;
  *
  * @author admin
  */
-public class Alien extends AbstractActor implements Movable{
+public class Alien extends AbstractCharacter implements Movable, Enemy{
 
     int movementInterval;
     double i;
@@ -36,6 +36,7 @@ public class Alien extends AbstractActor implements Movable{
         step = 2;
         movementInterval = 30;
         i = Math.random();
+        setHealth(50);
     }
     
     @Override
@@ -137,8 +138,7 @@ public class Alien extends AbstractActor implements Movable{
         
         if(this.intersects(ripley))
         {
-            ripley.setHealth(ripley.getHealth() - 1);
-            System.out.println(ripley.getHealth());
+            //ripley.setHealth(ripley.getHealth() - 1);
         }
     } 
 }

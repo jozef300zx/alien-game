@@ -5,7 +5,6 @@
  */
 package sk.tuke.oop.game.actors;
 
-import sk.tuke.oop.game.actors.openables.Door;
 import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.ActorFactory;
@@ -16,6 +15,7 @@ import sk.tuke.oop.game.actors.machine.WallSwitch;
 import sk.tuke.oop.game.actors.openables.ExitDoor;
 import sk.tuke.oop.game.actors.openables.LockedDoor;
 import sk.tuke.oop.game.items.AccessCard;
+import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
 
 /**
@@ -64,14 +64,14 @@ public class ActorFactoryImpl implements ActorFactory {
             }     
             case "back door" : 
             {  
-                actor = new LockedDoor("back door",true);
+                actor = new LockedDoor("back door",false);
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }             
             case "exit door" : 
             {  
-                actor = new ExitDoor("exit door",false);
+                actor = new ExitDoor("exit door",true);
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
@@ -114,6 +114,27 @@ public class ActorFactoryImpl implements ActorFactory {
             case "lever" : 
             {
                 actor = new Lever();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }   
+            case "ammo" : 
+            {
+                actor = new Ammo();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }       
+            case "alien" : 
+            {
+                actor = new Alien();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }        
+            case "alien mother" : 
+            {
+                actor = new AlienMother();
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;

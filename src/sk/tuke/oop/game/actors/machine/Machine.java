@@ -22,11 +22,13 @@ public class Machine extends AbstractActor {
     private AbstractMachineState state;
     LockedDoor frontDoor;
     LockedDoor backDoor;
+    int runningStateTimer;
     
     
     public Machine(){
         normalAnimation = new Animation("resources/sprites/invisible.png",16,16,100);
         setAnimation(normalAnimation);
+        runningStateTimer = 500;
     }
     
 public void floorSwitchActivated(){
@@ -112,7 +114,6 @@ public void act(){
                 Explosion explosion = new Explosion();
                 explosion.setPosition((int) (80 + 96 * Math.random()), (int) (64 + 80 * Math.random()));
                 getWorld().addActor(explosion);
-                explosion.setAddedToWorld(true);
                 explosion.explode();
             }
             
@@ -129,9 +130,13 @@ public void act(){
                 getWorld().removeActor(actor);
             }
             
-            
+        runningStateTimer -= 1;
+        if(runningStateTimer == 0){
+            leverRetracted();
+        }            
             
         }
+
 
 }    
 

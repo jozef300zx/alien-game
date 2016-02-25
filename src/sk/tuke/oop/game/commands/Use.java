@@ -6,7 +6,6 @@
 package sk.tuke.oop.game.commands;
 
 import sk.tuke.oop.framework.Actor;
-import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.game.actors.openables.Openable;
 import sk.tuke.oop.game.actors.Usable;
 

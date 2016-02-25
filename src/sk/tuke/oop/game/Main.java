@@ -24,7 +24,7 @@ public class Main {
         
 
         
-        slickWorld.setMap("/resources/levels/level03.xml");
+        slickWorld.setMap("/resources/levels/level04.xml");
         for (Actor actor : slickWorld) {
             if(actor instanceof Door){
                 if(actor.getHeight() > actor.getWidth()) {

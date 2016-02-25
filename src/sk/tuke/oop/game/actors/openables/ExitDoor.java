@@ -7,13 +7,12 @@ package sk.tuke.oop.game.actors.openables;
 
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Message;
-import sk.tuke.oop.game.actors.Usable;
 
 /**
  *
  * @author jmorvay
  */
-public class ExitDoor extends Door implements Usable {
+public class ExitDoor extends Door {
 
     public ExitDoor(String name, boolean vertical) {
         super(name, vertical);
@@ -21,7 +20,13 @@ public class ExitDoor extends Door implements Usable {
 
     @Override
     public void use(Actor actor) {
-        actor.getWorld().showMessage(new Message("Well Done!",100,10));
+        
+    }
+    
+    public void act(){
+        if(isOpen){
+        getWorld().showMessage(new Message("Well Done!",100,10));
+        }
     }
     
 }

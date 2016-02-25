@@ -17,7 +17,6 @@ import sk.tuke.oop.game.actors.ripley.Ripley;
  */
 public class Ammo extends AbstractActor implements Item {
  Ripley ripley;
- Animation normalAnimation;
     
    public Ammo()
    {

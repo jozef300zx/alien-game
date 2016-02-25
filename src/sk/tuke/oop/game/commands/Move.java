@@ -6,6 +6,7 @@
 package sk.tuke.oop.game.commands;
 
 import sk.tuke.oop.game.actors.Movable;
+import sk.tuke.oop.game.actors.Projectile;
 
 /**
  *
@@ -27,7 +28,8 @@ public class Move implements Command{
 
         
     @Override
-    public void Execute() {
+    public void Execute() {       
+        
         if(dx == 0 && dy == -1)
         {
             moveNorth();
@@ -71,7 +73,7 @@ public class Move implements Command{
  
     public void moveNorth(){
         actor.setPosition(actor.getX(), actor.getY() - step);
-        if(actor.getWorld().intersectWithWall(actor))
+        if(actor.getWorld().intersectWithWall(actor) && !(actor instanceof Projectile))
         {
             actor.setPosition(actor.getX(), actor.getY() + step);
         } else {        
@@ -81,7 +83,7 @@ public class Move implements Command{
     
     public void moveSouth(){
         actor.setPosition(actor.getX(), actor.getY() + step);
-        if(actor.getWorld().intersectWithWall(actor))
+        if(actor.getWorld().intersectWithWall(actor) && !(actor instanceof Projectile))
         {
             actor.setPosition(actor.getX(), actor.getY() - step);
         } else {        
@@ -92,7 +94,7 @@ public class Move implements Command{
     
     public void moveEast(){
         actor.setPosition(actor.getX() + step, actor.getY());
-        if(actor.getWorld().intersectWithWall(actor))
+        if(actor.getWorld().intersectWithWall(actor) && !(actor instanceof Projectile))
         {
             actor.setPosition(actor.getX() - step, actor.getY());
         } else {                
@@ -103,7 +105,7 @@ public class Move implements Command{
     
     public void moveWest(){
         actor.setPosition(actor.getX() - step, actor.getY());
-        if(actor.getWorld().intersectWithWall(actor))
+        if(actor.getWorld().intersectWithWall(actor) && !(actor instanceof Projectile))
         {
             actor.setPosition(actor.getX() + step, actor.getY());
         } else {        
@@ -114,7 +116,7 @@ public class Move implements Command{
     
     public void moveSouthEast(){
         actor.setPosition(actor.getX() + step, actor.getY() + step);
-        if(actor.getWorld().intersectWithWall(actor))
+        if(actor.getWorld().intersectWithWall(actor) && !(actor instanceof Projectile))
         {
             actor.setPosition(actor.getX() - step, actor.getY() - step);
             moveSouth();
@@ -127,7 +129,7 @@ public class Move implements Command{
     
     public void moveSouthWest(){
         actor.setPosition(actor.getX() - step, actor.getY() + step);
-        if(actor.getWorld().intersectWithWall(actor))
+        if(actor.getWorld().intersectWithWall(actor) && !(actor instanceof Projectile))
         {
             actor.setPosition(actor.getX() + step, actor.getY() - step);
             moveSouth();
@@ -140,7 +142,7 @@ public class Move implements Command{
     
     public void moveNorthWest(){
         actor.setPosition(actor.getX() - step, actor.getY() - step);
-        if(actor.getWorld().intersectWithWall(actor))
+        if(actor.getWorld().intersectWithWall(actor) && !(actor instanceof Projectile))
         {
             actor.setPosition(actor.getX() + step, actor.getY() + step);
             moveNorth();
@@ -153,7 +155,7 @@ public class Move implements Command{
     
     public void moveNorthEast(){
         actor.setPosition(actor.getX() + step, actor.getY() - step);
-        if(actor.getWorld().intersectWithWall(actor))
+        if(actor.getWorld().intersectWithWall(actor) && !(actor instanceof Projectile))
         {
             actor.setPosition(actor.getX() - step, actor.getY() + step);
             moveNorth();
