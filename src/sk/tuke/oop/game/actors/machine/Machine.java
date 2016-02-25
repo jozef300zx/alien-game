@@ -22,7 +22,7 @@ public class Machine extends AbstractActor {
     private AbstractMachineState state;
     LockedDoor frontDoor;
     LockedDoor backDoor;
-    List<Explosion> bombs = new ArrayList<> ();
+    
     
     public Machine(){
         normalAnimation = new Animation("resources/sprites/invisible.png",16,16,100);
@@ -57,6 +57,7 @@ public void wallSwitchActivated(){
 }
  
 public void leverRetracted(){
+    List<Actor> toRemove = new ArrayList<> ();
     if(this.state instanceof Running){
         setState(getState().leverRetracted());
         System.out.println("leverRetracted");
@@ -66,10 +67,22 @@ public void leverRetracted(){
     backDoor.open();
     frontDoor.unlock();
     frontDoor.open();    
+    
+    for (Actor actor : getWorld()){
+        if(actor instanceof Explosion){
+            toRemove.add(actor);
+        }
+    }
+            
+    for (Actor actor : toRemove){
+        getWorld().removeActor(actor);
+    }
+    
     }
 }
  
 public void act(){
+        List<Actor> toRemove = new ArrayList<> ();
     
         if (frontDoor == null){
             Iterator<Actor> iterator = getWorld().iterator();
@@ -95,16 +108,27 @@ public void act(){
         
         if(this.state instanceof Running){
             
-            if(Math.random() < 0.2) {
-                Explosion bomb = new Explosion();
-                bomb.setPosition((int) (80 + 96 * Math.random()), (int) (64 + 80 * Math.random()));
-                bombs.add(bomb);
-            }
-            
-            for (Explosion explosion : bombs){
+            if(Math.random() < 0.02) {
+                Explosion explosion = new Explosion();
+                explosion.setPosition((int) (80 + 96 * Math.random()), (int) (64 + 80 * Math.random()));
                 getWorld().addActor(explosion);
+                explosion.setAddedToWorld(true);
                 explosion.explode();
             }
+            
+            for (Actor actor : getWorld()){
+                if(actor instanceof Explosion){
+                    ((Explosion) actor).setTimer(((Explosion) actor).getTimer() - 1);
+                    if(((Explosion) actor).getTimer() == 0){
+                        toRemove.add(actor);
+                    }
+                }
+            }
+            
+            for (Actor actor : toRemove){
+                getWorld().removeActor(actor);
+            }
+            
             
             
         }
