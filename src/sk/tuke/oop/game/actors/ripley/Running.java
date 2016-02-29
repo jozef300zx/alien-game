@@ -50,6 +50,7 @@ public class Running implements RipleyState{
 
     @Override
     public void act() {
+        ripley.normalAnimation.stop();
         List<Actor> toRemove = new ArrayList<> ();
         ripley.setInput(Input.getInstance());
         ripley.getWorld().showMessage(new Message("Health: " + ripley.getHealth() + " | Ammo: " + ripley.getAmmo(),100,10));

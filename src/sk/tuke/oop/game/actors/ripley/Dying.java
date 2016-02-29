@@ -28,6 +28,7 @@ public class Dying implements RipleyState{
 
     @Override
     public void act() {
+        ripley.normalAnimation.stop();
         if(ripley.getAnimation() != deadAnimation) {
         ripley.setAnimation(deadAnimation);
         ripley.getWorld().showMessage(new Message("You're dead!",100,10));

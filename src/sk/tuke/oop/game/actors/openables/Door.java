@@ -5,9 +5,12 @@
  */
 package sk.tuke.oop.game.actors.openables;
 
+import java.util.HashSet;
+import java.util.Set;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractActor;
+import sk.tuke.oop.game.actors.Observer;
 import sk.tuke.oop.game.actors.Usable;
 
 /**
@@ -17,6 +20,7 @@ import sk.tuke.oop.game.actors.Usable;
 public class Door extends AbstractActor implements Usable,Openable{
     boolean isOpen;
     private boolean locked;
+    Set <Observer> listOfObersvers = new HashSet<> ();
     
     public Door(String name, boolean vertical) {
         if(vertical) {
@@ -56,6 +60,10 @@ public class Door extends AbstractActor implements Usable,Openable{
         }
         }
         
+        for(Observer o : listOfObersvers){
+            o.giveNotice();
+        }
+        
     }
 
     @Override
@@ -77,6 +85,10 @@ public class Door extends AbstractActor implements Usable,Openable{
         getWorld().setWall(this.getX() / 16, this.getY() / 16, true);
         getWorld().setWall((this.getX() + 16) / 16, this.getY() / 16, true);    
         }
+        
+        for(Observer o : listOfObersvers){
+            o.giveNotice();
+        }        
     }
 
     
@@ -93,6 +105,14 @@ public class Door extends AbstractActor implements Usable,Openable{
     public boolean isLocked() {
         return locked;
     }
+    
+    public void addObserver(Observer o){
+        listOfObersvers.add(o);
+    }
+    
+    public void removeObserver(Observer o){
+        listOfObersvers.remove(o);
+    }    
     
 
     

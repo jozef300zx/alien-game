@@ -29,7 +29,7 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
     public Bullet(int x, int y, int rotation){
         setPosition(x, y);
         this.rotation = rotation;
-        normalAnimation = new Animation("resources/sprites/bullet.png",16,16,100);
+        normalAnimation = new Animation("resources/sprites/energy_bullet.png",16,16,100);
         normalAnimation.setPingPong(true);
         normalAnimation.setRotation(rotation);
         setAnimation(normalAnimation);        

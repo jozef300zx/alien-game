@@ -45,7 +45,6 @@ public class Ripley extends AbstractCharacter implements Movable{
     
     @Override
         public void act() {
-        normalAnimation.stop();
         if(getHealth() > 0){
             state = running;
         } else {
@@ -53,10 +52,7 @@ public class Ripley extends AbstractCharacter implements Movable{
         }
         
         state.act();
-        
-        
-        //running.act();
-        //dying.act();
+
     }
 
 

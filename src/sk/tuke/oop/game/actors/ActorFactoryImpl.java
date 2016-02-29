@@ -127,9 +127,15 @@ public class ActorFactoryImpl implements ActorFactory {
             }       
             case "alien" : 
             {
+                if(string.equals("waiting1") || string.equals("waiting2"))
+                {
+                actor = new WaitingAlien();
+                } else {
                 actor = new Alien();
+                }
+                
                 ((AbstractActor) actor).setName(string1);
-                ((AbstractActor) actor).setType(string);
+                ((AbstractActor) actor).setType(string);                
                 return actor;
             }        
             case "alien mother" : 
