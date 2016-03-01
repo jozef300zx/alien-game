@@ -11,12 +11,12 @@ import sk.tuke.oop.framework.Animation;
  *
  * @author jmorvay
  */
-public class AlienMother extends Alien {
+public class AlienMother extends WaitingAlien {
     
     public AlienMother()
     {
+        super();
         normalAnimation = new Animation("resources/sprites/mother.png",112,162,200);
-        normalAnimation.setPingPong(true);
         setAnimation(normalAnimation);
         setHealth(200);
     }

@@ -12,7 +12,9 @@ import sk.tuke.oop.framework.Animation;
  * @author admin
  */
 public class Alien extends AbstractCharacter implements Movable, Enemy{
+    static int alienCount;
     private AlienState state;
+    
 
     
     public Alien()
@@ -23,6 +25,7 @@ public class Alien extends AbstractCharacter implements Movable, Enemy{
         step = 2;
         setHealth(20);
         state = new Active(this);
+        alienCount++;
     }
     
     @Override
@@ -38,5 +41,20 @@ public class Alien extends AbstractCharacter implements Movable, Enemy{
         this.state = state;
     }
 
+    public void die(){
+	if(getHealth() == 0){
+	getWorld().removeActor(this);
+	LargeExplosion impact = new LargeExplosion();
+	impact.setPosition(getX(),getY());
+	impact.getAnimation().setDuration(10);
+	impact.setTimer(10);
+	getWorld().addActor(impact);
+	impact.explode();  
+        
+        if(--alienCount == 0){
+            System.exit(0);
+        }
+        } 
+    }
 }
 

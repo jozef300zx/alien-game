@@ -5,12 +5,15 @@
  */
 package sk.tuke.oop.game.actors;
 
+import sk.tuke.oop.game.actors.openables.Door;
+
 /**
  *
  * @author jmorvay
  */
 public class WaitingAlien extends Alien implements Observer{
-
+    private Door door;
+    
     public WaitingAlien(){
         super();
         setState(new Waiting(this));
@@ -23,8 +26,27 @@ public class WaitingAlien extends Alien implements Observer{
         setState(new Waiting(this));
         }
         
-        
-        
+    }
+    
+    @Override
+    public void act(){
+        getState().act();
+        if(getHealth() == 0)
+        getDoor().removeObserver(this);
+    }
+
+    /**
+     * @return the door
+     */
+    public Door getDoor() {
+        return door;
+    }
+
+    /**
+     * @param door the door to set
+     */
+    public void setDoor(Door door) {
+        this.door = door;
     }
     
 }

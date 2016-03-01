@@ -18,6 +18,8 @@ public class Waiting implements AlienState{
 
     @Override
     public void act() {
+        alien.getAnimation().stop();
+        alien.die();
     }
     
 }

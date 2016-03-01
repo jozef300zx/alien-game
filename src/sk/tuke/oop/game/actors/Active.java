@@ -135,15 +135,7 @@ public class Active implements AlienState {
             ripley.setHealth(ripley.getHealth() - 1);
         }
         
-        if(alien.getHealth() == 0){
-            alien.getWorld().removeActor(alien);
-            LargeExplosion impact = new LargeExplosion();
-            impact.setPosition(alien.getX(), alien.getY());
-            impact.getAnimation().setDuration(10);
-            impact.setTimer(10);
-            alien.getWorld().addActor(impact);
-            impact.explode();            
-        }        
+        alien.die();
     }
 
 

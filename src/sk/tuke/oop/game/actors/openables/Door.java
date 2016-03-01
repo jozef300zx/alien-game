@@ -12,6 +12,7 @@ import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.Observer;
 import sk.tuke.oop.game.actors.Usable;
+import sk.tuke.oop.game.actors.WaitingAlien;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Door extends AbstractActor implements Usable,Openable{
     boolean isOpen;
     private boolean locked;
     Set <Observer> listOfObersvers = new HashSet<> ();
+    private boolean initialCycle;
     
     public Door(String name, boolean vertical) {
         if(vertical) {
@@ -34,6 +36,7 @@ public class Door extends AbstractActor implements Usable,Openable{
         isOpen = false;
         locked = false;
         this.setName(name);
+        initialCycle = true;
     }
 
     @Override
@@ -58,10 +61,11 @@ public class Door extends AbstractActor implements Usable,Openable{
         getWorld().setWall(this.getX() / 16, this.getY() / 16, false);
         getWorld().setWall((this.getX() + 16) / 16, this.getY() / 16, false);    
         }
-        }
+        
         
         for(Observer o : listOfObersvers){
             o.giveNotice();
+        }
         }
         
     }
@@ -114,6 +118,32 @@ public class Door extends AbstractActor implements Usable,Openable{
         listOfObersvers.remove(o);
     }    
     
+    @Override
+    public void act(){
+        if(initialCycle){
+            if(this.getName().equals("front door")){
+            for(Actor actor : getWorld())
+            {
+                if(actor instanceof WaitingAlien && ((AbstractActor) actor).getType().equals("waiting1")){
+                    addObserver((Observer)actor);
+                    ((WaitingAlien)actor).setDoor(this);
+                }
+            }
+            }
+            if(this.getName().equals("back door")){
+            for(Actor actor : getWorld())
+            {
+                if(actor instanceof WaitingAlien && ((AbstractActor) actor).getType().equals("waiting2")){
+                    addObserver((Observer)actor);
+                    ((WaitingAlien)actor).setDoor(this);
+                }
+            }
+            }            
+            
+        }
+        
+        initialCycle = false;
+    }
 
     
     
