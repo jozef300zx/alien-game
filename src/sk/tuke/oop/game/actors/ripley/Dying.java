@@ -21,7 +21,7 @@ public class Dying implements RipleyState{
     public Dying(Ripley ripley){
         this.ripley = ripley;
         this.ripley.setName("dying ripley");
-        deadAnimation = new Animation("resources/sprites/player_die.png",32,32,100);
+        deadAnimation = new Animation("resources/sprites/body.png",64,48,100);
         animationTimer = 150;
     }
     

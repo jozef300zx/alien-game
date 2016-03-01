@@ -11,7 +11,7 @@ import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractActor;
-import sk.tuke.oop.game.actors.Explosion;
+import sk.tuke.oop.game.actors.SmallExplosion;
 import sk.tuke.oop.game.actors.openables.LockedDoor;
 
 /**
@@ -71,7 +71,7 @@ public void leverRetracted(){
     frontDoor.open();    
     
     for (Actor actor : getWorld()){
-        if(actor instanceof Explosion){
+        if(actor instanceof SmallExplosion){
             toRemove.add(actor);
         }
     }
@@ -111,16 +111,16 @@ public void act(){
         if(this.state instanceof Running){
             
             if(Math.random() < 0.02) {
-                Explosion explosion = new Explosion();
+                SmallExplosion explosion = new SmallExplosion();
                 explosion.setPosition((int) (80 + 96 * Math.random()), (int) (64 + 80 * Math.random()));
                 getWorld().addActor(explosion);
                 explosion.explode();
             }
             
             for (Actor actor : getWorld()){
-                if(actor instanceof Explosion){
-                    ((Explosion) actor).setTimer(((Explosion) actor).getTimer() - 1);
-                    if(((Explosion) actor).getTimer() == 0){
+                if(actor instanceof SmallExplosion){
+                    ((SmallExplosion) actor).setTimer(((SmallExplosion) actor).getTimer() - 1);
+                    if(((SmallExplosion) actor).getTimer() == 0){
                         toRemove.add(actor);
                     }
                 }

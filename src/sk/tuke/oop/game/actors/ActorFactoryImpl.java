@@ -17,6 +17,7 @@ import sk.tuke.oop.game.actors.openables.LockedDoor;
 import sk.tuke.oop.game.items.AccessCard;
 import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
+import sk.tuke.oop.game.items.EnergyPulseAmmo;
 
 /**
  *
@@ -144,7 +145,21 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }                 
+            }      
+            case "barrel" : 
+            {
+                actor = new Barrel();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }       
+            case "pulse ammo" : 
+            {
+                actor = new EnergyPulseAmmo();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }                
             default: return null;
         }
         }

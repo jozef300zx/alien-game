@@ -42,7 +42,7 @@ public class Alien extends AbstractCharacter implements Movable, Enemy{
     }
 
     public void die(){
-	if(getHealth() == 0){
+	if(getHealth() <= 0){
 	getWorld().removeActor(this);
 	LargeExplosion impact = new LargeExplosion();
 	impact.setPosition(getX(),getY());

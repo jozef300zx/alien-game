@@ -11,7 +11,7 @@ import sk.tuke.oop.framework.Animation;
  *
  * @author admin
  */
-public class LargeExplosion extends Explosion{
+public class LargeExplosion extends SmallExplosion{
     private int timer;
     
         public LargeExplosion(){

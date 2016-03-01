@@ -121,6 +121,19 @@ public class Door extends AbstractActor implements Usable,Openable{
     @Override
     public void act(){
         if(initialCycle){
+            //set wall
+              if(this.getHeight() > this.getWidth()) {
+                    getWorld().setWall(this.getX() / 16, this.getY() / 16, true);
+                    getWorld().setWall(this.getX() / 16, (this.getY() + 16) / 16, true);
+                }
+        
+                if(this.getWidth() > this.getHeight()) {
+                    getWorld().setWall(this.getX() / 16, this.getY() / 16, true);
+                    getWorld().setWall((this.getX() + 16) / 16, this.getY() / 16, true);    
+                }            
+
+            
+            //get list of observing aliens
             if(this.getName().equals("front door")){
             for(Actor actor : getWorld())
             {

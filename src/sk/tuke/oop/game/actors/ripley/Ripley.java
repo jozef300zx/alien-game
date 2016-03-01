@@ -20,6 +20,7 @@ import sk.tuke.oop.game.items.BackpackImpl;
  */
 public class Ripley extends AbstractCharacter implements Movable{
     private int ammo;
+    private int pulseAmmo;
     int countdown;
     private BackpackImpl backpack;
     boolean poisoned;
@@ -41,6 +42,7 @@ public class Ripley extends AbstractCharacter implements Movable{
         dying = new Dying(this);
         poisoned = false;
         gametime = 0;
+        pulseAmmo = 100;
     }
     
     @Override
@@ -109,6 +111,14 @@ public class Ripley extends AbstractCharacter implements Movable{
     
     public BackpackImpl getBackpack(){
         return this.backpack;
+    }
+
+    public int getPulse() {
+        return pulseAmmo;
+    }
+
+    public void setPulse(int pulse) {
+        this.pulseAmmo = pulse;
     }
 
 

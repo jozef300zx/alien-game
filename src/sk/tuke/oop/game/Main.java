@@ -21,25 +21,7 @@ public class Main {
         ActorFactoryImpl factory = new ActorFactoryImpl();
         
         slickWorld.setFactory(factory);
-        
-
-        
-        slickWorld.setMap("/resources/levels/level04.xml");
-        for (Actor actor : slickWorld) {
-            if(actor instanceof Door){
-                if(actor.getHeight() > actor.getWidth()) {
-                    slickWorld.setWall(actor.getX() / 16, actor.getY() / 16, true);
-                    slickWorld.setWall(actor.getX() / 16, (actor.getY() + 16) / 16, true);
-                }
-        
-                if(actor.getWidth() > actor.getHeight()) {
-                    slickWorld.setWall(actor.getX() / 16, actor.getY() / 16, true);
-                    slickWorld.setWall((actor.getX() + 16) / 16, actor.getY() / 16, true);    
-                }
-            }
-        }
-        
-        
+        slickWorld.setMap("/resources/levels/level04.xml");        
         slickWorld.run();
       
         

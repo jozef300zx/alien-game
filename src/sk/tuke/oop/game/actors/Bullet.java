@@ -24,15 +24,15 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
     Move moveDownLeft;
     Move moveUpRight;
     Move moveUpLeft;
-    int rotation;
+    int damage;
     
     public Bullet(int x, int y, int rotation){
         setPosition(x, y);
-        this.rotation = rotation;
         normalAnimation = new Animation("resources/sprites/bullet.png",16,16,100);
         normalAnimation.setPingPong(true);
         normalAnimation.setRotation(rotation);
         setAnimation(normalAnimation);        
+        damage = 10;
         
     }
     
@@ -65,7 +65,7 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
             moveUpLeft = new Move(this, 3, -1, -1);
         }        
         
-        switch (rotation) {
+        switch (normalAnimation.getRotation()) {
             case 135 : moveDownRight.Execute(); break;
             case 225 : moveDownLeft.Execute();break;
             case 45 :  moveUpRight.Execute();break;
@@ -79,7 +79,7 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
         
         if(getWorld().intersectWithWall(this)){
             getWorld().removeActor(this);
-            Explosion impact = new Explosion();
+            SmallExplosion impact = new SmallExplosion();
             impact.setPosition(getX(), getY());
             impact.getAnimation().setDuration(5);
             impact.setTimer(5);
@@ -90,13 +90,13 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
         for (Actor actor : getWorld()){
             if(actor instanceof Enemy && this.intersects(actor)){
             toRemove.add(this);
-            Explosion impact = new Explosion();
+            SmallExplosion impact = new SmallExplosion();
             impact.setPosition(getX(), getY());
             impact.getAnimation().setDuration(5);
             impact.setTimer(5);
             toAdd.add(impact);
             impact.explode();
-            ((AbstractCharacter)actor).setHealth(((AbstractCharacter)actor).getHealth() - 10);
+            ((AbstractCharacter)actor).setHealth(((AbstractCharacter)actor).getHealth() - damage);
             }
         }
         

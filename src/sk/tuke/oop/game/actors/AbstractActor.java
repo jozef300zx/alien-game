@@ -152,6 +152,7 @@ public abstract class AbstractActor implements Actor {
     public void setType(String type) {
         this.type = type;
     }
+
     
 
     
