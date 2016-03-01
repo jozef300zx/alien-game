@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.tuke.oop.game.actors;
+package sk.tuke.oop.game.actors.weapons;
 
 import java.util.ArrayList;
 import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
+import sk.tuke.oop.game.actors.AbstractActor;
+import sk.tuke.oop.game.actors.AbstractCharacter;
+import sk.tuke.oop.game.actors.alien.Enemy;
+import sk.tuke.oop.game.actors.Movable;
+import sk.tuke.oop.game.actors.Projectile;
+import sk.tuke.oop.game.actors.SmallExplosion;
 import sk.tuke.oop.game.commands.Move;
 
 /**

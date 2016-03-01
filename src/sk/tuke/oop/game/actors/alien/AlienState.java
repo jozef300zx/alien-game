@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.tuke.oop.game.actors;
+package sk.tuke.oop.game.actors.alien;
 
 /**
  *
  * @author jmorvay
  */
-public interface Enemy {
-    
+public interface AlienState {
+    public void act();
 }

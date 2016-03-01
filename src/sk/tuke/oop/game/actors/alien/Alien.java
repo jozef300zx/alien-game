@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.tuke.oop.game.actors;
+package sk.tuke.oop.game.actors.alien;
 
+import sk.tuke.oop.game.actors.alien.AlienState;
 import sk.tuke.oop.framework.Animation;
+import sk.tuke.oop.game.actors.AbstractCharacter;
+import sk.tuke.oop.game.actors.LargeExplosion;
+import sk.tuke.oop.game.actors.Movable;
 
 /**
  *
@@ -22,7 +26,7 @@ public class Alien extends AbstractCharacter implements Movable, Enemy{
         normalAnimation = new Animation("resources/sprites/warrior_alien.png",32,32,100);
         normalAnimation.setPingPong(true);
         setAnimation(normalAnimation);
-        step = 2;
+        setStep(2);
         setHealth(20);
         state = new Active(this);
         alienCount++;

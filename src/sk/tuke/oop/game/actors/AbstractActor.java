@@ -22,7 +22,7 @@ public abstract class AbstractActor implements Actor {
     int y;
     int height;
     int width;
-    int step;
+    private int step;
     String name;
     private String type;
     public Animation normalAnimation;
@@ -151,6 +151,20 @@ public abstract class AbstractActor implements Actor {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * @return the step
+     */
+    public int getStep() {
+        return step;
+    }
+
+    /**
+     * @param step the step to set
+     */
+    public void setStep(int step) {
+        this.step = step;
     }
 
     

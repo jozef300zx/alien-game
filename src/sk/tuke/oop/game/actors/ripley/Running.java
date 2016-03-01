@@ -11,14 +11,16 @@ import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Input;
 import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.framework.Message;
-import sk.tuke.oop.game.actors.Bullet;
-import sk.tuke.oop.game.actors.EnergyWave;
+import sk.tuke.oop.game.actors.weapons.Bullet;
+import sk.tuke.oop.game.actors.weapons.EnergyWave;
 import sk.tuke.oop.game.actors.Explosion;
 import sk.tuke.oop.game.actors.SmallExplosion;
 import sk.tuke.oop.game.actors.Usable;
 import sk.tuke.oop.game.actors.machine.FloorSwitch;
 import sk.tuke.oop.game.actors.machine.Lever;
 import sk.tuke.oop.game.actors.machine.Machine;
+import sk.tuke.oop.game.actors.weapons.Gun;
+import sk.tuke.oop.game.actors.weapons.RegularGun;
 import sk.tuke.oop.game.commands.DropItem;
 import sk.tuke.oop.game.commands.Move;
 import sk.tuke.oop.game.commands.NextItem;
@@ -43,18 +45,22 @@ public class Running implements RipleyState{
     DropItem dropItem;
     NextItem nextItem;
     Machine machine;
+    Gun gun;
     
     public Running(Ripley ripley){
                 this.ripley = ripley;
                 this.ripley.setName("ripley");
+                gun = new RegularGun();
     }
 
     @Override
     public void act() {
         ripley.normalAnimation.stop();
+        //Message abcd = new Message("ABCD",100,300);
         List<Actor> toRemove = new ArrayList<> ();
         ripley.setInput(Input.getInstance());
-        ripley.getWorld().showMessage(new Message("Health: " + ripley.getHealth() + " | Ammo: " + ripley.getAmmo() + " | Pulse: " + ripley.getPulse(),100,10));
+        ripley.getWorld().showMessage(new Message("Health: " + ripley.getHealth() + " | Ammo: " + ripley.getAmmo() + " | Energy pulse: " + ripley.getPulse(),100,10));
+        //ripley.getWorld().showMessage(abcd);
 
         //inicializacia
         if (moveUp == null) {

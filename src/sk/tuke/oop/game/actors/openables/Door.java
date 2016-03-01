@@ -12,7 +12,7 @@ import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.Observer;
 import sk.tuke.oop.game.actors.Usable;
-import sk.tuke.oop.game.actors.WaitingAlien;
+import sk.tuke.oop.game.actors.alien.WaitingAlien;
 
 /**
  *

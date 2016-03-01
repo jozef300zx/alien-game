@@ -5,9 +5,8 @@
  */
 package sk.tuke.oop.game.actors;
 
-import sk.tuke.oop.framework.Actor;
+import sk.tuke.oop.game.actors.alien.Enemy;
 import sk.tuke.oop.framework.Animation;
-import static sk.tuke.oop.game.actors.Alien.alienCount;
 
 /**
  *

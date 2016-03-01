@@ -1,9 +1,7 @@
 package sk.tuke.oop.game;
 
-import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.SlickWorld;
 import sk.tuke.oop.game.actors.ActorFactoryImpl;
-import sk.tuke.oop.game.actors.openables.Door;
 
 
 /**

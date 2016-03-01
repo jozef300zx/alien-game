@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.tuke.oop.game.actors;
+package sk.tuke.oop.game.actors.alien;
+
+import sk.tuke.oop.game.actors.alien.Alien;
+import sk.tuke.oop.game.actors.alien.AlienState;
 
 /**
  *
