@@ -5,7 +5,6 @@
  */
 package sk.tuke.oop.game.actors.alien;
 
-import sk.tuke.oop.game.actors.alien.WaitingAlien;
 import sk.tuke.oop.framework.Animation;
 
 /**
@@ -19,7 +18,7 @@ public class AlienMother extends WaitingAlien {
         super();
         normalAnimation = new Animation("resources/sprites/mother.png",112,162,200);
         setAnimation(normalAnimation);
-        setHealth(200);
+        setHealth(1000);
     }
     
 }

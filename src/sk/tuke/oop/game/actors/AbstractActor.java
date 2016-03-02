@@ -167,7 +167,149 @@ public abstract class AbstractActor implements Actor {
         this.step = step;
     }
 
+    public int calculateX(Actor actor, boolean edge){
+        int actorX = 0;
+        if(edge){
+            if(getAnimation().getRotation() == 0)
+            {
+                actorX = (getX() + getWidth()/2) - actor.getWidth()/2;
+            }
+            if(getAnimation().getRotation() == 45)
+            {
+                actorX = getX() + getWidth();
+            }
+            if(getAnimation().getRotation() == 90)
+            {
+                actorX = getX() + getWidth();
+            }
+            if(getAnimation().getRotation() == 135)
+            {
+                actorX = getX() + getWidth();
+            }    
+            if(getAnimation().getRotation() == 180)
+            {
+                actorX = (getX() + getWidth()/2) - actor.getWidth()/2;
+            }  
+            if(getAnimation().getRotation() == 225)
+            {
+                actorX = getX() - actor.getWidth();
+            }    
+            if(getAnimation().getRotation() == 270)
+            {
+                actorX = getX() - actor.getWidth();
+            } 
+            if(getAnimation().getRotation() == 315)
+            {
+                actorX = getX() - actor.getWidth();
+            }
+        } else {
+            if(getAnimation().getRotation() == 0)
+            {
+                actorX = (getX() + getWidth()/2) - actor.getWidth()/2;
+            }
+            if(getAnimation().getRotation() == 45)
+            {
+                actorX = getX() + actor.getWidth();
+            }
+            if(getAnimation().getRotation() == 90)
+            {
+                actorX = getX() + actor.getWidth();
+            }
+            if(getAnimation().getRotation() == 135)
+            {
+                actorX = getX() + actor.getWidth();
+            }    
+            if(getAnimation().getRotation() == 180)
+            {
+                actorX = (getX() + getWidth()/2) - actor.getWidth()/2;
+            }  
+            if(getAnimation().getRotation() == 225)
+            {
+                actorX = getX();
+            }    
+            if(getAnimation().getRotation() == 270)
+            {
+                actorX = getX();
+            } 
+            if(getAnimation().getRotation() == 315)
+            {
+                actorX = getX();
+            }            
+        }
+            return actorX;
+    }    
     
-
+    public int calculateY(Actor actor, boolean edge){   
+        int actorY = 0;
+        if(edge){
+            if(getAnimation().getRotation() == 0)
+            {
+                actorY = getY() - actor.getHeight();
+            }
+            if(getAnimation().getRotation() == 45)
+            {
+                actorY = getY() - actor.getHeight();
+            }
+            if(getAnimation().getRotation() == 90)
+            {
+                actorY = (getY() + getHeight()/2) - actor.getHeight()/2;
+            }
+            if(getAnimation().getRotation() == 135)
+            {
+                actorY = getY() + getHeight();
+            }    
+            if(getAnimation().getRotation() == 180)
+            {
+                actorY = getY() + getHeight();
+            }  
+            if(getAnimation().getRotation() == 225)
+            {
+                actorY = getY() + getHeight();
+            }    
+            if(getAnimation().getRotation() == 270)
+            {
+                actorY = (getY() + getHeight()/2) - actor.getHeight()/2;
+            } 
+            if(getAnimation().getRotation() == 315)
+            {
+                actorY = getY() - actor.getHeight();
+            }
+        } else {
+            if(getAnimation().getRotation() == 0)
+            {
+                actorY = getY();
+            }
+            if(getAnimation().getRotation() == 45)
+            {
+                actorY = getY();
+            }
+            if(getAnimation().getRotation() == 90)
+            {
+                actorY = (getY() + getHeight()/2) - actor.getHeight()/2;
+            }
+            if(getAnimation().getRotation() == 135)
+            {
+                actorY = getY() + actor.getHeight();
+            }    
+            if(getAnimation().getRotation() == 180)
+            {
+                actorY = getY() + actor.getHeight();
+            }  
+            if(getAnimation().getRotation() == 225)
+            {
+                actorY = getY() + actor.getHeight();
+            }    
+            if(getAnimation().getRotation() == 270)
+            {
+                actorY = getY() + actor.getHeight();
+            } 
+            if(getAnimation().getRotation() == 315)
+            {
+                actorY = getY();
+            }            
+        }
+            return actorY;
+            
+    }  
     
 }

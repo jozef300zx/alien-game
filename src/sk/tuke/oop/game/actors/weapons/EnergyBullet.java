@@ -11,14 +11,16 @@ import sk.tuke.oop.framework.Animation;
  *
  * @author jmorvay
  */
-public class EnergyWave extends Bullet{
+public class EnergyBullet extends Bullet{
     
-    public EnergyWave(int x, int y, int rotation) {
+    public EnergyBullet(int x, int y, int rotation) {
         super(x, y, rotation);
-        normalAnimation = new Animation("resources/sprites/energy_wave.png",16,16,100);
+        normalAnimation = new Animation("resources/sprites/energy_bullet.png",16,16,100);
+        normalAnimation.setPingPong(true);
         normalAnimation.setRotation(rotation);
-        setAnimation(normalAnimation);        
-        setDamage(20);        
+        setAnimation(normalAnimation);    
+        setDamage(10);
     }
+    
     
 }

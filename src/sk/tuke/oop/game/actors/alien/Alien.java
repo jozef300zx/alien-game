@@ -50,8 +50,8 @@ public class Alien extends AbstractCharacter implements Movable, Enemy{
 	getWorld().removeActor(this);
 	LargeExplosion impact = new LargeExplosion();
 	impact.setPosition(getX(),getY());
-	impact.getAnimation().setDuration(10);
-	impact.setTimer(10);
+	impact.getAnimation().setDuration(20);
+	impact.setTimer(20);
 	getWorld().addActor(impact);
 	impact.explode();  
         

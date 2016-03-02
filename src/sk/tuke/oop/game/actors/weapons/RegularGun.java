@@ -5,14 +5,27 @@
  */
 package sk.tuke.oop.game.actors.weapons;
 
+import sk.tuke.oop.game.actors.ripley.Ripley;
+
 /**
  *
  * @author admin
  */
 public class RegularGun implements Gun {
+    Ripley ripley;
+    
+    public RegularGun(Ripley ripley){
+        this.ripley = ripley;
+    }
 
     @Override
     public void shoot() {
+            Bullet bullet = new Bullet(ripley.getX(),ripley.getY(),ripley.getAnimation().getRotation());
+            bullet.setPosition(ripley.calculateX(bullet, true), ripley.calculateY(bullet, true));
+            if(ripley.getAmmo() > 0){
+            ripley.getWorld().addActor(bullet);
+            ripley.setAmmo(ripley.getAmmo() - 1);
+            }        
     }
     
 }

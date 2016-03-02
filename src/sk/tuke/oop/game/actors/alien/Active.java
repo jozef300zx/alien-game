@@ -5,8 +5,6 @@
  */
 package sk.tuke.oop.game.actors.alien;
 
-import sk.tuke.oop.game.actors.alien.Alien;
-import sk.tuke.oop.game.actors.alien.AlienState;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.game.commands.Move;

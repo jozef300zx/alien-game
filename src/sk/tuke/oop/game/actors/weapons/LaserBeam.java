@@ -9,65 +9,51 @@ import java.util.ArrayList;
 import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
-import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.AbstractCharacter;
-import sk.tuke.oop.game.actors.alien.Enemy;
-import sk.tuke.oop.game.actors.Movable;
-import sk.tuke.oop.game.actors.Projectile;
 import sk.tuke.oop.game.actors.SmallExplosion;
+import sk.tuke.oop.game.actors.alien.Enemy;
 import sk.tuke.oop.game.commands.Move;
 
 /**
  *
  * @author jmorvay
  */
-public class Bullet extends AbstractActor implements Movable,Projectile{
-    Move moveUp;
-    Move moveDown;
-    Move moveRight;
-    Move moveLeft;
-    Move moveDownRight;
-    Move moveDownLeft;
-    Move moveUpRight;
-    Move moveUpLeft;
-    private int damage;
+public class LaserBeam extends Bullet {
     
-    public Bullet(int x, int y, int rotation){
-        setPosition(x, y);
-        normalAnimation = new Animation("resources/sprites/bullet.png",16,16,100);
+    public LaserBeam(int x, int y, int rotation) {
+        super(x, y, rotation);
+        normalAnimation = new Animation("resources/sprites/laser_beam.png",16,16,100);
         normalAnimation.setRotation(rotation);
-        setAnimation(normalAnimation);        
-        setDamage(5);
-        
+        setAnimation(normalAnimation);    
+        setDamage(2);        
     }
     
     public void act(){
-        List<Actor> toRemove = new ArrayList<> ();
         List<Actor> toAdd = new ArrayList<> ();
         //inicializacia 
         if (moveUp == null) {
-            moveUp = new Move(this, 5, 0, -1);
+            moveUp = new Move(this, 6, 0, -1);
         }
         if (moveDown == null) {
-            moveDown = new Move(this, 5, 0, 1);
+            moveDown = new Move(this, 6, 0, 1);
         }
         if (moveRight == null) {
-            moveRight = new Move(this, 5, 1, 0);
+            moveRight = new Move(this, 6, 1, 0);
         }
         if (moveLeft == null) {
-            moveLeft = new Move(this, 5, -1, 0);
+            moveLeft = new Move(this, 6, -1, 0);
         }
         if (moveDownRight == null) {
-            moveDownRight = new Move(this, 5, 1, 1);
+            moveDownRight = new Move(this, 6, 1, 1);
         }
         if (moveDownLeft == null) {
-            moveDownLeft = new Move(this, 5, -1, 1);
+            moveDownLeft = new Move(this, 6, -1, 1);
         }
         if (moveUpRight == null) {
-            moveUpRight = new Move(this, 5, 1, -1);
+            moveUpRight = new Move(this, 6, 1, -1);
         }
         if (moveUpLeft == null) {
-            moveUpLeft = new Move(this, 5, -1, -1);
+            moveUpLeft = new Move(this, 6, -1, -1);
         }        
         
         switch (normalAnimation.getRotation()) {
@@ -94,7 +80,6 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
         
         for (Actor actor : getWorld()){
             if(actor instanceof Enemy && this.intersects(actor)){
-            toRemove.add(this);
             SmallExplosion impact = new SmallExplosion();
             impact.setPosition(getX(), getY());
             impact.getAnimation().setDuration(5);
@@ -104,23 +89,12 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
             ((AbstractCharacter)actor).setHealth(((AbstractCharacter)actor).getHealth() - getDamage());
             }
         }
-        
-        for (Actor actor : toRemove){
-            getWorld().removeActor(actor);
-        }
 
         for (Actor actor : toAdd){
             getWorld().addActor(actor);
         }
 
     
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
+    }    
+    
 }

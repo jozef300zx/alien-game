@@ -10,20 +10,20 @@ import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.ripley.Ripley;
+import sk.tuke.oop.game.actors.weapons.EnergyGunDecorator;
+import sk.tuke.oop.game.actors.weapons.LaserGunDecorator;
 
 /**
  *
- * @author admin
+ * @author jmorvay
  */
-public class Energy extends AbstractActor implements Item {
- Ripley ripley;
- 
-    public Energy()
-    {
-        normalAnimation = new Animation("resources/sprites/energy.png",16,16,100);
+public class GunUpgrade extends AbstractActor implements Item{
+    Ripley ripley;
+    
+    public GunUpgrade(){
+        normalAnimation = new Animation("resources/sprites/gun_upgrade.png",16,16,100);
         setAnimation(normalAnimation);
     }
-    
     public void act()
     {
         if(ripley == null)
@@ -37,10 +37,14 @@ public class Energy extends AbstractActor implements Item {
         }
         }
         
-        if(this.intersects(ripley) && ripley.getHealth() < 100)
+        if(this.intersects(ripley))
         {
-            ripley.setHealth(100);
+            if(ripley.getGun() instanceof EnergyGunDecorator){
+            ripley.setGun(new LaserGunDecorator(ripley.getGun(), ripley));
+            } else {
+            ripley.setGun(new EnergyGunDecorator(ripley.getGun(), ripley));
+            }
             getWorld().removeActor(this);
         }
-    }
+    }    
 }

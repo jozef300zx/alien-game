@@ -12,6 +12,9 @@ import sk.tuke.oop.game.actors.AbstractCharacter;
 import sk.tuke.oop.game.actors.Cooler;
 import sk.tuke.oop.game.actors.openables.Door;
 import sk.tuke.oop.game.actors.Movable;
+import sk.tuke.oop.game.actors.weapons.Gun;
+import sk.tuke.oop.game.actors.weapons.OmnidirectionalEnergyWave;
+import sk.tuke.oop.game.actors.weapons.RegularGun;
 import sk.tuke.oop.game.items.BackpackImpl;
 
 /**
@@ -28,6 +31,8 @@ public class Ripley extends AbstractCharacter implements Movable{
     RipleyState state;
     Running running;
     Dying dying;
+    private Gun gun;
+    private OmnidirectionalEnergyWave omniWave;    
 
     
     public Ripley()
@@ -43,6 +48,8 @@ public class Ripley extends AbstractCharacter implements Movable{
         poisoned = false;
         gametime = 0;
         pulseAmmo = 100;
+        gun = new RegularGun(this);
+        omniWave = new OmnidirectionalEnergyWave(this);        
     }
     
     @Override
@@ -119,6 +126,22 @@ public class Ripley extends AbstractCharacter implements Movable{
 
     public void setPulse(int pulse) {
         this.pulseAmmo = pulse;
+    }
+
+    public Gun getGun() {
+        return gun;
+    }
+
+    public void setGun(Gun gun) {
+        this.gun = gun;
+    }
+
+    public OmnidirectionalEnergyWave getOmniWave() {
+        return omniWave;
+    }
+
+    public void setOmniWave(OmnidirectionalEnergyWave omniWave) {
+        this.omniWave = omniWave;
     }
 
 

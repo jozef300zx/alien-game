@@ -40,8 +40,8 @@ public class Barrel extends AbstractCharacter implements Enemy{
 	getWorld().removeActor(this);
 	DamagingExplosion impact = new DamagingExplosion();
 	impact.setPosition(getX() - 8,getY() - 8);
-	impact.getAnimation().setDuration(10);
-	impact.setTimer(30);
+	impact.getAnimation().setDuration(20);
+	impact.setTimer(20);
 	getWorld().addActor(impact);
 	impact.explode();  
         getWorld().setWall(this.getX() / 16, this.getY() / 16, false);

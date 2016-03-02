@@ -20,6 +20,7 @@ public class Main {
         
         slickWorld.setFactory(factory);
         slickWorld.setMap("/resources/levels/level04.xml");        
+        //slickWorld.setMap("/resources/levels/test.tmx");
         slickWorld.run();
       
         

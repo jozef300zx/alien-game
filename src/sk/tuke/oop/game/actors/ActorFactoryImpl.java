@@ -21,6 +21,7 @@ import sk.tuke.oop.game.items.AccessCard;
 import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
 import sk.tuke.oop.game.items.EnergyPulseAmmo;
+import sk.tuke.oop.game.items.GunUpgrade;
 
 /**
  *
@@ -162,7 +163,14 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }                
+            }      
+            case "gun upgrade" : 
+            {
+                actor = new GunUpgrade();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }             
             default: return null;
         }
         }

@@ -62,8 +62,6 @@ public void leverRetracted(){
     List<Actor> toRemove = new ArrayList<> ();
     if(this.state instanceof Running){
         setState(getState().leverRetracted());
-        System.out.println("leverRetracted");
-      
     
     backDoor.unlock();
     backDoor.open();

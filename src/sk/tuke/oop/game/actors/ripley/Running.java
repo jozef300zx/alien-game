@@ -11,8 +11,6 @@ import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Input;
 import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.framework.Message;
-import sk.tuke.oop.game.actors.weapons.Bullet;
-import sk.tuke.oop.game.actors.weapons.EnergyWave;
 import sk.tuke.oop.game.actors.Explosion;
 import sk.tuke.oop.game.actors.SmallExplosion;
 import sk.tuke.oop.game.actors.Usable;
@@ -20,6 +18,7 @@ import sk.tuke.oop.game.actors.machine.FloorSwitch;
 import sk.tuke.oop.game.actors.machine.Lever;
 import sk.tuke.oop.game.actors.machine.Machine;
 import sk.tuke.oop.game.actors.weapons.Gun;
+import sk.tuke.oop.game.actors.weapons.OmnidirectionalEnergyWave;
 import sk.tuke.oop.game.actors.weapons.RegularGun;
 import sk.tuke.oop.game.commands.DropItem;
 import sk.tuke.oop.game.commands.Move;
@@ -45,12 +44,12 @@ public class Running implements RipleyState{
     DropItem dropItem;
     NextItem nextItem;
     Machine machine;
-    Gun gun;
+
     
     public Running(Ripley ripley){
                 this.ripley = ripley;
                 this.ripley.setName("ripley");
-                gun = new RegularGun();
+
     }
 
     @Override
@@ -175,7 +174,7 @@ public class Running implements RipleyState{
 
             if(ripley.getBackpack().items.size() > 0) {
 
-            dropItem = new DropItem(ripley.getBackpack(),ripley.getWorld(),calculateX(ripley.getBackpack().getLastItem(),true),calculateY(ripley.getBackpack().getLastItem(),true));
+            dropItem = new DropItem(ripley.getBackpack(),ripley.getWorld(),ripley.calculateX(ripley.getBackpack().getLastItem(),true),ripley.calculateY(ripley.getBackpack().getLastItem(),true));
             dropItem.Execute();
             }
         }
@@ -192,45 +191,12 @@ public class Running implements RipleyState{
         
         if (ripley.getInput().isKeyPressed(Input.Key.SPACE))
         {
-            Bullet bullet = new Bullet(ripley.getX(),ripley.getY(),ripley.getAnimation().getRotation());
-            bullet.setPosition(calculateX(bullet, true), calculateY(bullet, true));
-            if(ripley.getAmmo() > 0){
-            ripley.getWorld().addActor(bullet);
-            ripley.setAmmo(ripley.getAmmo() - 1);
-            }
+            ripley.getGun().shoot();
         }
         
         if (ripley.getInput().isKeyPressed(Input.Key.R))
         {
-            EnergyWave wave1 = new EnergyWave(ripley.getX(),ripley.getY(),0);
-            EnergyWave wave2 = new EnergyWave(ripley.getX(),ripley.getY(),45);
-            EnergyWave wave3 = new EnergyWave(ripley.getX(),ripley.getY(),90);
-            EnergyWave wave4 = new EnergyWave(ripley.getX(),ripley.getY(),135);
-            EnergyWave wave5 = new EnergyWave(ripley.getX(),ripley.getY(),180);
-            EnergyWave wave6 = new EnergyWave(ripley.getX(),ripley.getY(),225);
-            EnergyWave wave7 = new EnergyWave(ripley.getX(),ripley.getY(),270);
-            EnergyWave wave8 = new EnergyWave(ripley.getX(),ripley.getY(),315);
-            wave1.setPosition(calculateX(wave1,false), calculateY(wave1,false));
-            wave2.setPosition(calculateX(wave2,false), calculateY(wave2,false));
-            wave3.setPosition(calculateX(wave3,false), calculateY(wave3,false));
-            wave4.setPosition(calculateX(wave4,false), calculateY(wave4,false));
-            wave5.setPosition(calculateX(wave5,false), calculateY(wave5,false));
-            wave6.setPosition(calculateX(wave6,false), calculateY(wave6,false));
-            wave7.setPosition(calculateX(wave7,false), calculateY(wave7,false));
-            wave8.setPosition(calculateX(wave8,false), calculateY(wave8,false));
-            
-            if(ripley.getPulse()> 0){
-            ripley.getWorld().addActor(wave1);
-            ripley.getWorld().addActor(wave2);
-            ripley.getWorld().addActor(wave3);
-            ripley.getWorld().addActor(wave4);
-            ripley.getWorld().addActor(wave5);
-            ripley.getWorld().addActor(wave6);
-            ripley.getWorld().addActor(wave7);
-            ripley.getWorld().addActor(wave8);
-            
-            ripley.setPulse(ripley.getPulse() - 1);
-            }
+            ripley.getOmniWave().shoot();
         }        
         
         
@@ -265,154 +231,6 @@ public class Running implements RipleyState{
                 ripley.getWorld().removeActor(actor);
         }        
     }
-    
-    public int calculateX(Actor actor, boolean edge){
-        int x = 0;
-        if(edge){
-            if(ripley.getAnimation().getRotation() == 0)
-            {
-                x = (ripley.getX() + ripley.getWidth()/2) - actor.getWidth()/2;
-            }
-            if(ripley.getAnimation().getRotation() == 45)
-            {
-                x = ripley.getX() + ripley.getWidth();
-            }
-            if(ripley.getAnimation().getRotation() == 90)
-            {
-                x = ripley.getX() + ripley.getWidth();
-            }
-            if(ripley.getAnimation().getRotation() == 135)
-            {
-                x = ripley.getX() + ripley.getWidth();
-            }    
-            if(ripley.getAnimation().getRotation() == 180)
-            {
-                x = (ripley.getX() + ripley.getWidth()/2) - actor.getWidth()/2;
-            }  
-            if(ripley.getAnimation().getRotation() == 225)
-            {
-                x = ripley.getX() - actor.getWidth();
-            }    
-            if(ripley.getAnimation().getRotation() == 270)
-            {
-                x = ripley.getX() - actor.getWidth();
-            } 
-            if(ripley.getAnimation().getRotation() == 315)
-            {
-                x = ripley.getX() - actor.getWidth();
-            }
-        } else {
-            if(ripley.getAnimation().getRotation() == 0)
-            {
-                x = (ripley.getX() + ripley.getWidth()/2) - actor.getWidth()/2;
-            }
-            if(ripley.getAnimation().getRotation() == 45)
-            {
-                x = ripley.getX() + actor.getWidth();
-            }
-            if(ripley.getAnimation().getRotation() == 90)
-            {
-                x = ripley.getX() + actor.getWidth();
-            }
-            if(ripley.getAnimation().getRotation() == 135)
-            {
-                x = ripley.getX() + actor.getWidth();
-            }    
-            if(ripley.getAnimation().getRotation() == 180)
-            {
-                x = (ripley.getX() + ripley.getWidth()/2) - actor.getWidth()/2;
-            }  
-            if(ripley.getAnimation().getRotation() == 225)
-            {
-                x = ripley.getX();
-            }    
-            if(ripley.getAnimation().getRotation() == 270)
-            {
-                x = ripley.getX();
-            } 
-            if(ripley.getAnimation().getRotation() == 315)
-            {
-                x = ripley.getX();
-            }            
-        }
-            return x;
-    }
-    
-    public int calculateY(Actor actor, boolean edge){   
-        int y = 0;
-        if(edge){
-            if(ripley.getAnimation().getRotation() == 0)
-            {
-                y = ripley.getY() - actor.getHeight();
-            }
-            if(ripley.getAnimation().getRotation() == 45)
-            {
-                y = ripley.getY() - actor.getHeight();
-            }
-            if(ripley.getAnimation().getRotation() == 90)
-            {
-                y = (ripley.getY() + ripley.getHeight()/2) - actor.getHeight()/2;
-            }
-            if(ripley.getAnimation().getRotation() == 135)
-            {
-                y = ripley.getY() + ripley.getHeight();
-            }    
-            if(ripley.getAnimation().getRotation() == 180)
-            {
-                y = ripley.getY() + ripley.getHeight();
-            }  
-            if(ripley.getAnimation().getRotation() == 225)
-            {
-                y = ripley.getY() + ripley.getHeight();
-            }    
-            if(ripley.getAnimation().getRotation() == 270)
-            {
-                y = (ripley.getY() + ripley.getHeight()/2) - actor.getHeight()/2;
-            } 
-            if(ripley.getAnimation().getRotation() == 315)
-            {
-                y = ripley.getY() - actor.getHeight();
-            }
-        } else {
-            if(ripley.getAnimation().getRotation() == 0)
-            {
-                y = ripley.getY();
-            }
-            if(ripley.getAnimation().getRotation() == 45)
-            {
-                y = ripley.getY();
-            }
-            if(ripley.getAnimation().getRotation() == 90)
-            {
-                y = (ripley.getY() + ripley.getHeight()/2) - actor.getHeight()/2;
-            }
-            if(ripley.getAnimation().getRotation() == 135)
-            {
-                y = ripley.getY() + actor.getHeight();
-            }    
-            if(ripley.getAnimation().getRotation() == 180)
-            {
-                y = ripley.getY() + actor.getHeight();
-            }  
-            if(ripley.getAnimation().getRotation() == 225)
-            {
-                y = ripley.getY() + actor.getHeight();
-            }    
-            if(ripley.getAnimation().getRotation() == 270)
-            {
-                y = ripley.getY() + actor.getHeight();
-            } 
-            if(ripley.getAnimation().getRotation() == 315)
-            {
-                y = ripley.getY();
-            }            
-        }
-            return y;
-            
-    }    
-
-    
-    
     
 }
 

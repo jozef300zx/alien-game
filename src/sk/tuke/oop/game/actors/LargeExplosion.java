@@ -15,9 +15,9 @@ public class LargeExplosion extends SmallExplosion{
     private int timer;
     
         public LargeExplosion(){
-        normalAnimation = new Animation("resources/sprites/large_explosion.png",32,32,5);
+        normalAnimation = new Animation("resources/sprites/large_explosion.png",32,32,10);
         setAnimation(normalAnimation);
-        timer = 5;
+        timer = 10;
        
     }  
 }
