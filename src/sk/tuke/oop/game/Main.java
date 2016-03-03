@@ -19,8 +19,8 @@ public class Main {
         ActorFactoryImpl factory = new ActorFactoryImpl();
         
         slickWorld.setFactory(factory);
-        slickWorld.setMap("/resources/levels/level04.xml");        
-        //slickWorld.setMap("/resources/levels/test.tmx");
+        //slickWorld.setMap("/resources/levels/level04.xml");        
+        slickWorld.setMap("/resources/levels/map.tmx");
         slickWorld.run();
       
         

@@ -17,9 +17,6 @@ import sk.tuke.oop.game.actors.Usable;
 import sk.tuke.oop.game.actors.machine.FloorSwitch;
 import sk.tuke.oop.game.actors.machine.Lever;
 import sk.tuke.oop.game.actors.machine.Machine;
-import sk.tuke.oop.game.actors.weapons.Gun;
-import sk.tuke.oop.game.actors.weapons.OmnidirectionalEnergyWave;
-import sk.tuke.oop.game.actors.weapons.RegularGun;
 import sk.tuke.oop.game.commands.DropItem;
 import sk.tuke.oop.game.commands.Move;
 import sk.tuke.oop.game.commands.NextItem;
@@ -198,6 +195,10 @@ public class Running implements RipleyState{
         {
             ripley.getOmniWave().shoot();
         }        
+        
+        if (ripley.getInput().isKeyPressed(Input.Key.G)){
+            System.out.println(ripley.getX() + " " + ripley.getY());
+        }
         
         
         for (Actor actor : ripley.getWorld()){

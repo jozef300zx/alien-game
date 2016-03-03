@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="102" height="102" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="tileset01" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../../../oop/project.hellen/resources/levels/tilesets/tileset01.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="501" name="tileset02" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../../../oop/project.hellen/resources/levels/tilesets/tileset02.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="1001" name="tileset03" tilewidth="16" tileheight="16" tilecount="420" columns="20">
+  <image source="../../../oop/project.hellen/resources/levels/tilesets/tileset03.png" width="320" height="336"/>
+ </tileset>
+ <layer name="walls" width="102" height="102" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2cW07bQABFHUUsL4EtkLCFdg9lG7AH2EPZAPwAVVve/MACOpY6YjRNxklnHM7HOdJViBlsy0fO9SNmttd1M1gO/6b/eR6yH3JQSOvlp8vcdnxtLqdddzX92Aa0LJLXZchRIWMse7nFvDdZx00TvUTfwkAvTPTCRC9M9MJEL0z0wkQvTPTCRC9M9MJEL0z0wkQvTPTCRC9M9MJEL0z0wkQvTPTCRC9M9MJEL0yil7leUKReFnrBkHr5qhcMqZdjvWCw95nohYlemHiczMT9hYlemOiFiV6Y6IWJXpjohYlemKT/V8Hr/Byily9e50cRvXzzOj8K+4WJXpjohYlemOiFiffFmPj9MSZ+f4yJ/cJEL0z0wkQvTPTCRC9M9LI7HiZd9xjyFPIc8jL5+F0+/XWil11xPhkeE3F/2R0XekFyoxck73pBcqoXJPY+E3ufib3PxN5nYu8zsfeZ2PtM7H0m9j4Te5+Jvc/E3mdi7zOx93fPSdjmP0N+hfwOuQu5XzMtvc8fWTdOL3WcbbEvbILPibfh+0hefE68juvMS++pTzwGy9//8/fBwU3IbciPqc+Jt+It2969pz7xGCx/n7POi/1Sx8mK7Z2f35fO9/UyDmP1vl7qGKv39VJH3vu16KUNee/Xopc2rOr9GvTSBnufyVDvx+18lRwDp9PycXppw1Dvl7yUxuuljqHeLzkojdfLuOiFiV4+hxc/x5DkXuJ1/XhtXy+fwyovFw28eL+yjtxLvNcSX//XS3+/cjZS+v1wP+QAMJ95o3UozSsfE9c5PYcZSnq/8nCk9PvhMuQIMJ9Fo3UozSsfE9f5crpZUi9/AHtPxT+QogAA
+  </data>
+ </layer>
+ <layer name="background" width="102" height="102">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="30">
+     <object name="ellen" type="ripley" x="1552" y="1552" width="32" height="32"/>
+ </objectgroup>
+ 
+</map>
