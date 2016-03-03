@@ -40,14 +40,14 @@ public class Ripley extends AbstractCharacter implements Movable{
         normalAnimation = new Animation("resources/sprites/player.png",32,32,100);
         normalAnimation.setPingPong(true);
         setAnimation(normalAnimation);
-        setHealth(100);
-        this.ammo = 100;
+        setHealth(50);
+        this.ammo = 10;
         this.backpack = new BackpackImpl(10);
         running = new Running(this);
         dying = new Dying(this);
         poisoned = false;
         gametime = 0;
-        pulseAmmo = 100;
+        pulseAmmo = 0;
         gun = new RegularGun(this);
         omniWave = new OmnidirectionalEnergyWave(this);        
     }

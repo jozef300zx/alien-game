@@ -5,18 +5,20 @@
  */
 package sk.tuke.oop.game.actors;
 
+import sk.tuke.oop.game.actors.darktiles.BlackTile;
 import sk.tuke.oop.game.actors.alien.AlienMother;
 import sk.tuke.oop.game.actors.alien.Alien;
 import sk.tuke.oop.game.actors.alien.WaitingAlien;
 import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.ActorFactory;
+import sk.tuke.oop.game.actors.darktiles.BlackTile20x12;
+import sk.tuke.oop.game.actors.darktiles.BlackTile8x9;
 import sk.tuke.oop.game.actors.machine.FloorSwitch;
 import sk.tuke.oop.game.actors.machine.Lever;
 import sk.tuke.oop.game.actors.machine.Machine;
 import sk.tuke.oop.game.actors.machine.WallSwitch;
-import sk.tuke.oop.game.actors.openables.ExitDoor;
-import sk.tuke.oop.game.actors.openables.LockedDoor;
+import sk.tuke.oop.game.actors.openables.Door;
 import sk.tuke.oop.game.items.AccessCard;
 import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
@@ -60,27 +62,20 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }
-            case "front door" : 
+            case "horizontal door" : 
             {  
-                actor = new LockedDoor("front door",true);
+                actor = new Door("horizontal door",false);
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }     
-            case "back door" : 
+            case "vertical door" : 
             {  
-                actor = new LockedDoor("back door",false);
+                actor = new Door("vertical door",true);
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }             
-            case "exit door" : 
-            {  
-                actor = new ExitDoor("exit door",true);
-                ((AbstractActor) actor).setName(string1);
-                ((AbstractActor) actor).setType(string);
-                return actor;
-            }                
+            }                            
             case "ellen" : 
             {
                 actor = new Ripley();
@@ -170,7 +165,36 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }             
+            }         
+            case "computer" : 
+            {
+                actor = new Computer();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }              
+            case "black tile" : 
+            {
+                actor = new BlackTile();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }     
+            case "black tile 20x12" : 
+            {
+                actor = new BlackTile20x12();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }     
+            case "black tile 8x9" : 
+            {
+                actor = new BlackTile8x9();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }              
+            
             default: return null;
         }
         }

@@ -133,25 +133,16 @@ public class Door extends AbstractActor implements Usable,Openable{
                 }            
 
             
-            //get list of observing aliens
-            if(this.getName().equals("front door")){
+            //get list of observers
+            if(this.getType().equals("1")){
             for(Actor actor : getWorld())
             {
-                if(actor instanceof WaitingAlien && ((AbstractActor) actor).getType().equals("waiting1")){
+                if(actor != this && ((AbstractActor) actor).getType().equals("1")){
                     addObserver((Observer)actor);
-                    ((WaitingAlien)actor).setDoor(this);
+                    //((WaitingAlien)actor).setDoor(this);
                 }
             }
-            }
-            if(this.getName().equals("back door")){
-            for(Actor actor : getWorld())
-            {
-                if(actor instanceof WaitingAlien && ((AbstractActor) actor).getType().equals("waiting2")){
-                    addObserver((Observer)actor);
-                    ((WaitingAlien)actor).setDoor(this);
-                }
-            }
-            }            
+            }          
             
         }
         
