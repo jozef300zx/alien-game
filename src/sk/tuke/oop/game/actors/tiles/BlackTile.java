@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.tuke.oop.game.actors.darktiles;
+package sk.tuke.oop.game.actors.tiles;
 
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.Observer;
+import sk.tuke.oop.game.actors.Trigger;
 
 /**
  *
@@ -20,7 +21,8 @@ public class BlackTile extends AbstractActor implements Observer{
     }
 
     @Override
-    public void giveNotice() {
+    public void giveNotice(Trigger trigger) {
         getWorld().removeActor(this);
     }
+
 }

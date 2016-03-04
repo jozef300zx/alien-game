@@ -11,7 +11,7 @@ import sk.tuke.oop.framework.Animation;
  *
  * @author jmorvay
  */
-public class AlienMother extends WaitingAlien {
+public class AlienMother extends Alien {
     
     public AlienMother()
     {

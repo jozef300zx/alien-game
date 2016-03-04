@@ -70,6 +70,18 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
             moveUpLeft = new Move(this, 5, -1, -1);
         }        
         
+        
+        if(getWorld().intersectWithWall(this)){
+            getWorld().removeActor(this);
+            SmallExplosion impact = new SmallExplosion();
+            impact.setPosition(getX(), getY());
+            impact.getAnimation().setDuration(5);
+            impact.setTimer(5);
+            getWorld().addActor(impact);
+            impact.explode();
+            return;
+        }
+        
         switch (normalAnimation.getRotation()) {
             case 135 : moveDownRight.Execute(); break;
             case 225 : moveDownLeft.Execute();break;
@@ -80,17 +92,7 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
             case 90 :  moveRight.Execute();break;
             case 270:  moveLeft.Execute();break;
             default:break;
-        }
-        
-        if(getWorld().intersectWithWall(this)){
-            getWorld().removeActor(this);
-            SmallExplosion impact = new SmallExplosion();
-            impact.setPosition(getX(), getY());
-            impact.getAnimation().setDuration(5);
-            impact.setTimer(5);
-            getWorld().addActor(impact);
-            impact.explode();
-        }
+        }   
         
         for (Actor actor : getWorld()){
             if(actor instanceof Enemy && this.intersects(actor)){
@@ -103,7 +105,7 @@ public class Bullet extends AbstractActor implements Movable,Projectile{
             impact.explode();
             ((AbstractCharacter)actor).setHealth(((AbstractCharacter)actor).getHealth() - getDamage());
             }
-        }
+        }        
         
         for (Actor actor : toRemove){
             getWorld().removeActor(actor);

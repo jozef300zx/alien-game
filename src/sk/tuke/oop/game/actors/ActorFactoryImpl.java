@@ -5,20 +5,23 @@
  */
 package sk.tuke.oop.game.actors;
 
-import sk.tuke.oop.game.actors.darktiles.BlackTile;
+import sk.tuke.oop.game.actors.tiles.BlackTile;
 import sk.tuke.oop.game.actors.alien.AlienMother;
 import sk.tuke.oop.game.actors.alien.Alien;
-import sk.tuke.oop.game.actors.alien.WaitingAlien;
 import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.ActorFactory;
-import sk.tuke.oop.game.actors.darktiles.BlackTile20x12;
-import sk.tuke.oop.game.actors.darktiles.BlackTile8x9;
+import sk.tuke.oop.game.actors.alien.AlienEgg;
+import sk.tuke.oop.game.actors.tiles.BlackTile20x12;
+import sk.tuke.oop.game.actors.tiles.BlackTile8x9;
 import sk.tuke.oop.game.actors.machine.FloorSwitch;
 import sk.tuke.oop.game.actors.machine.Lever;
 import sk.tuke.oop.game.actors.machine.Machine;
 import sk.tuke.oop.game.actors.machine.WallSwitch;
 import sk.tuke.oop.game.actors.openables.Door;
+import sk.tuke.oop.game.actors.tiles.BlackTile11x20;
+import sk.tuke.oop.game.actors.tiles.BlackTile21x21;
+import sk.tuke.oop.game.actors.tiles.InvisibleTile;
 import sk.tuke.oop.game.items.AccessCard;
 import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
@@ -127,13 +130,7 @@ public class ActorFactoryImpl implements ActorFactory {
             }       
             case "alien" : 
             {
-                if(string.equals("waiting1") || string.equals("waiting2"))
-                {
-                actor = new WaitingAlien();
-                } else {
                 actor = new Alien();
-                }
-                
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);                
                 return actor;
@@ -193,7 +190,63 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }              
+            }       
+            case "black tile 11x20" : 
+            {
+                actor = new BlackTile11x20();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }       
+            case "black tile 21x21" : 
+            {
+                actor = new BlackTile21x21();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }     
+            case "hole" : 
+            {
+                actor = new Hole();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }  
+            case "vertical body" : 
+            {
+                actor = new Body(true);
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }  
+            case "horizontal body" : 
+            {
+                actor = new Body(false);
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }            
+            case "invisible tile" : 
+            {
+                actor = new InvisibleTile();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }  
+            case "ground light" : 
+            {
+                actor = new GroundLight();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }
+            case "alien egg" : 
+            {
+                actor = new AlienEgg();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }             
             
             default: return null;
         }

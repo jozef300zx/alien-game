@@ -11,17 +11,17 @@ import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.Observer;
+import sk.tuke.oop.game.actors.Trigger;
 import sk.tuke.oop.game.actors.Usable;
-import sk.tuke.oop.game.actors.alien.WaitingAlien;
 
 /**
  *
  * @author jmorvay
  */
-public class Door extends AbstractActor implements Usable,Openable{
+public class Door extends AbstractActor implements Usable,Openable,Trigger{
     boolean isOpen;
     private boolean locked;
-    Set <Observer> listOfObersvers = new HashSet<> ();
+    Set <Observer> listOfObservers = new HashSet<> ();
     private boolean initialCycle;
     
     public Door(String name, boolean vertical) {
@@ -63,8 +63,8 @@ public class Door extends AbstractActor implements Usable,Openable{
         }
         
         
-        for(Observer o : listOfObersvers){
-            o.giveNotice();
+        for(Observer o : listOfObservers){
+            o.giveNotice(this);
         }
         }
         
@@ -90,8 +90,8 @@ public class Door extends AbstractActor implements Usable,Openable{
         getWorld().setWall((this.getX() + 16) / 16, this.getY() / 16, true);    
         }
         
-        for(Observer o : listOfObersvers){
-            o.giveNotice();
+        for(Observer o : listOfObservers){
+            o.giveNotice(this);
         }        
     }
 
@@ -111,11 +111,11 @@ public class Door extends AbstractActor implements Usable,Openable{
     }
     
     public void addObserver(Observer o){
-        listOfObersvers.add(o);
+        listOfObservers.add(o);
     }
     
     public void removeObserver(Observer o){
-        listOfObersvers.remove(o);
+        listOfObservers.remove(o);
     }    
     
     @Override
@@ -139,15 +139,29 @@ public class Door extends AbstractActor implements Usable,Openable{
             {
                 if(actor != this && ((AbstractActor) actor).getType().equals("1")){
                     addObserver((Observer)actor);
-                    //((WaitingAlien)actor).setDoor(this);
                 }
             }
-            }          
-            
+            }
+            if(this.getType().equals("2")){
+            for(Actor actor : getWorld())
+            {
+                if(actor != this && ((AbstractActor) actor).getType().equals("2")){
+                    addObserver((Observer)actor);
+                }
+            }            
+            }  
+            if(this.getType().equals("4")){
+            for(Actor actor : getWorld())
+            {
+                if(actor != this && ((AbstractActor) actor).getType().equals("4")){
+                    addObserver((Observer)actor);
+                }
+            }            
+            }            
+            initialCycle = false;
         }
-        
-        initialCycle = false;
     }
+    
 
     
     

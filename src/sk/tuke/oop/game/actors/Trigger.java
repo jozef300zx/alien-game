@@ -9,6 +9,8 @@ package sk.tuke.oop.game.actors;
  *
  * @author jmorvay
  */
-public interface Observer {
-    public void giveNotice(Trigger trigger);
+public interface Trigger {
+    public void addObserver(Observer o);
+    public void removeObserver(Observer o);
+    
 }

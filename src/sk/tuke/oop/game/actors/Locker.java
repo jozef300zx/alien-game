@@ -10,6 +10,7 @@ import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.commands.DropItem;
 import sk.tuke.oop.game.items.BackpackImpl;
 import sk.tuke.oop.game.items.Hammer;
+import sk.tuke.oop.game.items.Wrench;
 
 /**
  *
@@ -19,15 +20,28 @@ public class Locker extends AbstractActor implements Usable {
     private BackpackImpl backpack;
     DropItem dropItem;
     boolean used;
+    private boolean initialCycle;
     
     public Locker(){
         normalAnimation = new Animation("resources/sprites/locker.png",16,16,100);
         setAnimation(normalAnimation);
         this.backpack = new BackpackImpl(1);
-        this.backpack.add(new Hammer());
         this.used = false;
+        initialCycle = true;
     }    
 
+    public void act(){
+        if(initialCycle){
+            if(this.getType().equals("wrench locker")){
+                this.backpack.add(new Wrench());
+            }
+            if(this.getType().equals("hammer locker")){
+                this.backpack.add(new Hammer());
+            }            
+        initialCycle = false;    
+        }
+        
+    }
     @Override
     public void use(Actor actor) {
         int backpackSize = this.backpack.items.size();

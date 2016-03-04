@@ -10,8 +10,6 @@ import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.commands.DropItem;
 import sk.tuke.oop.game.items.BackpackImpl;
 import sk.tuke.oop.game.items.Hammer;
-import sk.tuke.oop.game.items.Money;
-import sk.tuke.oop.game.items.Wrench;
 
 /**
  *
@@ -21,16 +19,18 @@ public class Body extends AbstractActor implements Usable{
     private final BackpackImpl backpack;
     DropItem dropItem;
     boolean used;
+    private boolean initialCycle;
     
-    public Body()
+    public Body(boolean vertical)
     {
         normalAnimation = new Animation("resources/sprites/body.png",64,48,100);
         setAnimation(normalAnimation);
+        if(!vertical) {
+            getAnimation().setRotation(270);
+        }
         this.backpack = new BackpackImpl(3);
-        this.backpack.add(new Hammer());
-        this.backpack.add(new Money());
-        this.backpack.add(new Wrench());
-        this.used = false;
+        this.used = false;     
+        initialCycle = true;
     }
     
 
@@ -39,7 +39,6 @@ public class Body extends AbstractActor implements Usable{
         int backpackSize = this.backpack.items.size();
         if(!used)
         {
-        //for(Item item : backpack)
         for(int i = 0; i < backpackSize; i++)
         {
             dropItem = new DropItem(backpack, getWorld(), this.getX(), this.getY() - (this.backpack.getLastItem().getHeight() +1));
@@ -47,6 +46,13 @@ public class Body extends AbstractActor implements Usable{
         }
         used = true;
         }
+    }
+    
+    public void act(){
+        if(initialCycle && getType().equals("hammer")){         
+            this.backpack.add(new Hammer());
+        }
+
     }
     
 }

@@ -34,7 +34,7 @@ public class BackpackImpl implements Backpack{
         }
         else
         {
-            throw new ArrayIndexOutOfBoundsException();
+            //throw new ArrayIndexOutOfBoundsException();
         }
     }
 

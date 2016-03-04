@@ -9,6 +9,9 @@ package sk.tuke.oop.game.actors;
  *
  * @author jmorvay
  */
-public interface Observer {
-    public void giveNotice(Trigger trigger);
+public interface Switchable {
+    public void turnOn();
+    public void turnOff();
+    public boolean isOn();
+    
 }
