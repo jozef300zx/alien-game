@@ -49,7 +49,7 @@ public class Locker extends AbstractActor implements Usable {
         {
         for(int i = 0; i < backpackSize; i++)
         {
-            dropItem = new DropItem(backpack, getWorld(), this.getX() + (this.backpack.getLastItem().getWidth() +1), this.getY());
+            dropItem = new DropItem(backpack, getWorld(),getX() + backpack.getLastItem().getWidth(), getY());
             dropItem.Execute();
         }
         used = true;

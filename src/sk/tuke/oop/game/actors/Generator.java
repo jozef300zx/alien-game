@@ -11,11 +11,12 @@ import sk.tuke.oop.framework.Animation;
  *
  * @author jmorvay
  */
-public class Cooler extends AbstractActor {
-    public Cooler()
+public class Generator extends AbstractActor{
+    Generator()
     {
-        normalAnimation = new Animation("resources/sprites/fan.png",32,32,200);
+        normalAnimation = new Animation("resources/sprites/generator.png",32,48,100);
         setAnimation(normalAnimation);
+        normalAnimation.setRotation(90);
         normalAnimation.start();
     }    
     

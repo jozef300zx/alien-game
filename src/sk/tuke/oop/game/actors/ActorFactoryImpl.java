@@ -20,12 +20,15 @@ import sk.tuke.oop.game.actors.machine.Machine;
 import sk.tuke.oop.game.actors.machine.WallSwitch;
 import sk.tuke.oop.game.actors.openables.Door;
 import sk.tuke.oop.game.actors.tiles.BlackTile11x20;
+import sk.tuke.oop.game.actors.tiles.BlackTile11x9;
 import sk.tuke.oop.game.actors.tiles.BlackTile21x21;
+import sk.tuke.oop.game.actors.tiles.BlackTile41x37;
 import sk.tuke.oop.game.actors.tiles.InvisibleTile;
 import sk.tuke.oop.game.items.AccessCard;
 import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
 import sk.tuke.oop.game.items.EnergyPulseAmmo;
+import sk.tuke.oop.game.items.GreenKey;
 import sk.tuke.oop.game.items.GunUpgrade;
 
 /**
@@ -58,6 +61,7 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }
+            
             case "cooler" : 
             {
                 actor = new Cooler();
@@ -65,6 +69,27 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }
+            case "broken cooler" : 
+            {
+                actor = new BrokenCooler();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }     
+            case "fan" : 
+            {
+                actor = new Fan();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }
+            case "broken fan" : 
+            {
+                actor = new BrokenFan();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }                 
             case "horizontal door" : 
             {  
                 actor = new Door("horizontal door",false);
@@ -205,6 +230,20 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }     
+            case "black tile 41x37" : 
+            {
+                actor = new BlackTile41x37();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }    
+            case "black tile 11x9" : 
+            {
+                actor = new BlackTile11x9();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }             
             case "hole" : 
             {
                 actor = new Hole();
@@ -214,14 +253,14 @@ public class ActorFactoryImpl implements ActorFactory {
             }  
             case "vertical body" : 
             {
-                actor = new Body(true);
+                actor = new Body(false);
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }  
             case "horizontal body" : 
             {
-                actor = new Body(false);
+                actor = new Body(true);
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
@@ -246,7 +285,28 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }             
+            }  
+            case "teleport" : 
+            {
+                actor = new Teleport();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }       
+            case "green key" : 
+            {
+                actor = new GreenKey();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }     
+            case "generator" : 
+            {
+                actor = new Generator();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }              
             
             default: return null;
         }

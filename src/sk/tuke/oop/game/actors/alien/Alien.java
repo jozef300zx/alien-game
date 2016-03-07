@@ -20,7 +20,6 @@ import sk.tuke.oop.game.commands.Move;
  * @author admin
  */
 public class Alien extends AbstractCharacter implements Movable, Enemy, Observer{
-    static int alienCount;
     private AlienState state;
     private Move moveUp;
     private Move moveDown;
@@ -41,7 +40,6 @@ public class Alien extends AbstractCharacter implements Movable, Enemy, Observer
         setAnimation(normalAnimation);
         setHealth(20);
         state = new Waiting(this);
-        alienCount++;
         setStep(1);
     }
     
@@ -113,10 +111,6 @@ public class Alien extends AbstractCharacter implements Movable, Enemy, Observer
 	impact.setTimer(20);
 	getWorld().addActor(impact);
 	impact.explode();  
-        
-        if(--alienCount == 0){
-            //System.exit(0);
-        }
         } 
     }
 

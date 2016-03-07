@@ -150,6 +150,14 @@ public class Door extends AbstractActor implements Usable,Openable,Trigger{
                 }
             }            
             }  
+            if(this.getType().equals("3")){
+            for(Actor actor : getWorld())
+            {
+                if(actor != this && ((AbstractActor) actor).getType().equals("3")){
+                    addObserver((Observer)actor);
+                }
+            }            
+            }             
             if(this.getType().equals("4")){
             for(Actor actor : getWorld())
             {

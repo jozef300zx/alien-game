@@ -9,7 +9,7 @@ import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.World;
 import sk.tuke.oop.game.actors.AbstractCharacter;
-import sk.tuke.oop.game.actors.Cooler;
+import sk.tuke.oop.game.actors.BrokenCooler;
 import sk.tuke.oop.game.actors.openables.Door;
 import sk.tuke.oop.game.actors.Movable;
 import sk.tuke.oop.game.actors.weapons.Gun;
@@ -81,15 +81,15 @@ public class Ripley extends AbstractCharacter implements Movable{
         
     }
     
-    public boolean isPoisoned(Cooler cooler, Door door) {
+    public boolean isPoisoned(BrokenCooler cooler, Door door) {
         return cooler.isBroken() && door.isOpen();
     }        
     
-    public Cooler getCooler(){
-        Cooler returnCooler = null;
+    public BrokenCooler getCooler(){
+        BrokenCooler returnCooler = null;
         for(Actor actor : getWorld()){
-            if(actor instanceof Cooler){
-                returnCooler = (Cooler) actor;
+            if(actor instanceof BrokenCooler){
+                returnCooler = (BrokenCooler) actor;
             } 
         }
         return returnCooler;

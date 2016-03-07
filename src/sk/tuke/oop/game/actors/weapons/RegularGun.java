@@ -21,7 +21,7 @@ public class RegularGun implements Gun {
     @Override
     public void shoot() {
             Bullet bullet = new Bullet(ripley.getX(),ripley.getY(),ripley.getAnimation().getRotation());
-            bullet.setPosition(ripley.calculateX(bullet, true), ripley.calculateY(bullet, true));
+            bullet.setPosition(ripley.calculateX(bullet, false), ripley.calculateY(bullet, false));
             if(ripley.getAmmo() > 0){
             ripley.getWorld().addActor(bullet);
             ripley.setAmmo(ripley.getAmmo() - 1);

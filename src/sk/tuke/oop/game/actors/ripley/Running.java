@@ -171,7 +171,7 @@ public class Running implements RipleyState{
 
             if(ripley.getBackpack().items.size() > 0) {
 
-            dropItem = new DropItem(ripley.getBackpack(),ripley.getWorld(),ripley.calculateX(ripley.getBackpack().getLastItem(),true),ripley.calculateY(ripley.getBackpack().getLastItem(),true));
+            dropItem = new DropItem(ripley.getBackpack(),ripley.getWorld(),ripley.getX(),ripley.getY());
             dropItem.Execute();
             }
         }

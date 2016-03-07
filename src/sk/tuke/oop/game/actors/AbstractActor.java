@@ -301,7 +301,7 @@ public abstract class AbstractActor implements Actor {
             }    
             if(getAnimation().getRotation() == 270)
             {
-                actorY = getY() + actor.getHeight();
+                actorY = getY() + getHeight()/2 - actor.getHeight()/2;
             } 
             if(getAnimation().getRotation() == 315)
             {

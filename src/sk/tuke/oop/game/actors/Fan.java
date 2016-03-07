@@ -11,10 +11,10 @@ import sk.tuke.oop.framework.Animation;
  *
  * @author jmorvay
  */
-public class Cooler extends AbstractActor {
-    public Cooler()
+public class Fan extends AbstractActor {
+    public Fan()
     {
-        normalAnimation = new Animation("resources/sprites/fan.png",32,32,200);
+        normalAnimation = new Animation("resources/sprites/ventilator.png",32,32,100);
         setAnimation(normalAnimation);
         normalAnimation.start();
     }    

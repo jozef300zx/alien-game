@@ -12,6 +12,8 @@ import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.Observer;
 import sk.tuke.oop.game.actors.Trigger;
+import sk.tuke.oop.game.actors.alien.Active;
+import sk.tuke.oop.game.actors.alien.Alien;
 import sk.tuke.oop.game.actors.ripley.Ripley;
 
 /**
@@ -41,6 +43,17 @@ public class InvisibleTile extends AbstractActor implements Trigger{
                 }
             }
             }
+                        
+
+            if(this.getType().equals("4.1")){
+            for(Actor actor : getWorld())
+            {
+                if(!(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("4.1")){
+                    addObserver((Observer)actor);
+                }
+            }
+            }     
+            
             
             for(Actor actor : getWorld()){
                 if(actor instanceof Ripley){
@@ -57,6 +70,27 @@ public class InvisibleTile extends AbstractActor implements Trigger{
             }
             giveNoticeOnce = false;
         }
+            if(this.getType().equals("3.1")){
+                Alien alien = null;
+                Alien alien2 = null;
+            for(Actor actor : getWorld())
+            {
+                if(actor instanceof Ripley && actor.intersects(this)){
+                    alien = new Alien();
+                    alien.setState(new Active(alien));
+                    alien.setPosition(1456, 1232);
+                    alien2 = new Alien();
+                    alien2.setState(new Active(alien2));
+                    alien2.setPosition(1552, 1232);   
+                    
+                }
+            }
+            if(alien != null && alien2 != null){
+            getWorld().addActor(alien);
+            getWorld().addActor(alien2);
+            getWorld().removeActor(this);
+            }
+            }         
     }
     
     

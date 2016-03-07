@@ -17,12 +17,14 @@ import sk.tuke.oop.game.actors.Trigger;
 public class AlienEgg extends AbstractActor implements Observer{
     private int timer;
     private boolean spawn;    
+    LurkerSpawn lurkerSpawn;  
     
     public AlienEgg(){
         normalAnimation = new Animation("resources/sprites/alien_egg.png",32,32,150);
         setAnimation(normalAnimation);  
         normalAnimation.setLooping(false);
         normalAnimation.stop();
+        timer = 60;
     }      
 
     @Override
@@ -33,9 +35,25 @@ public class AlienEgg extends AbstractActor implements Observer{
     }
     
 public void act(){
-        if(normalAnimation.getCurrentFrame() == 2){
-            normalAnimation.stop();
-        }    
+        if(spawn && timer >= 1){
+            
+            if(timer % 60 == 0){
+                lurkerSpawn  = new LurkerSpawn();
+                lurkerSpawn.setPosition(this.getX(), this.getY());
+                getWorld().addActor(lurkerSpawn);
+                lurkerSpawn.getAnimation().start();
+            }            
+            
+            if(timer == 1){
+                getWorld().removeActor(lurkerSpawn);
+                Lurker lurker  = new Lurker();
+                lurker.setPosition(this.getX(), this.getY());
+                getWorld().addActor(lurker);
+                spawn = false;
+            }
+                timer--;
+            
+        }
 }
     
 }
