@@ -6,7 +6,6 @@
 package sk.tuke.oop.game.actors;
 
 import sk.tuke.oop.framework.Actor;
-import sk.tuke.oop.game.items.Hammer;
 import sk.tuke.oop.game.items.Wrench;
 
 /**

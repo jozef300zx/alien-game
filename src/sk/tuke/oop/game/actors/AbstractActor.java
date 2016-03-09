@@ -28,7 +28,7 @@ public abstract class AbstractActor implements Actor {
     public Animation normalAnimation;
     private Input input;
     private World world;
-    List intersectingActors = new ArrayList<>();
+    
 
     public AbstractActor() {
     }
@@ -110,11 +110,11 @@ public abstract class AbstractActor implements Actor {
     
     public List getIntersectingActors()
     {
-        
+        List intersectingActors = new ArrayList<>();        
         
         for(Actor actor : getWorld())
         {
-            if(this.intersects(actor))
+            if(this.intersects(actor) && actor instanceof Movable && !(actor instanceof Projectile) && actor != this)
                 intersectingActors.add(actor);
         }
         

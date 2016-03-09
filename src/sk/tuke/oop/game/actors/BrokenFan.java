@@ -5,6 +5,8 @@
  */
 package sk.tuke.oop.game.actors;
 
+import java.util.HashSet;
+import java.util.Set;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.game.items.Hammer;
 
@@ -12,13 +14,17 @@ import sk.tuke.oop.game.items.Hammer;
  *
  * @author jmorvay
  */
-public class BrokenFan extends AbstractActor implements Repairable {
+public class BrokenFan extends Fan implements Repairable,Trigger {
     private boolean broken;
+    Set <Observer> listOfObservers = new HashSet<> ();
+    private boolean initialCycle;    
 
     public BrokenFan()
     {
         super();
         normalAnimation.stop();
+        broken = true;
+        initialCycle = true;
     }
     
     public boolean isBroken()
@@ -33,9 +39,34 @@ public class BrokenFan extends AbstractActor implements Repairable {
         {
         this.broken = false;
         normalAnimation.start();
+        for(Observer o : listOfObservers){
+            o.giveNotice();
+        }     
         }
     }
+
+    public void addObserver(Observer o){
+        listOfObservers.add(o);
+    }
     
+    public void removeObserver(Observer o){
+        listOfObservers.remove(o);
+    } 
+    
+    public void act(){
+        if(initialCycle){
+            //get list of observers
+            if(this.getType().equals("5.1")){
+            for(Actor actor : getWorld())
+            {
+                if(actor != this && ((AbstractActor) actor).getType().equals("5.2")){
+                    addObserver((Observer)actor);
+                }
+            }
+            }
+            initialCycle = false;
+        }
+    }
     
     
 }

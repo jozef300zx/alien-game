@@ -25,4 +25,8 @@ public class BlackTile extends AbstractActor implements Observer{
         getWorld().removeActor(this);
     }
 
+    @Override
+    public void giveNotice() {
+    }
+
 }

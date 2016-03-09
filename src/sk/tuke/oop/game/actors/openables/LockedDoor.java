@@ -15,8 +15,8 @@ import sk.tuke.oop.game.actors.Usable;
 public class LockedDoor extends Door implements Usable{
     boolean locked;
 
-    public LockedDoor(String name, boolean vertical) {
-        super(name, vertical);
+    public LockedDoor(boolean vertical) {
+        super(vertical);
         locked = true;
     }
 

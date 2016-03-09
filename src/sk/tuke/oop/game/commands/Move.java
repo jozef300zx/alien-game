@@ -5,6 +5,7 @@
  */
 package sk.tuke.oop.game.commands;
 
+import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.Movable;
 import sk.tuke.oop.game.actors.Projectile;
 
@@ -28,7 +29,7 @@ public class Move implements Command{
 
         
     @Override
-    public void Execute() {       
+    public void Execute() {
         
         if(dx == 0 && dy == -1)
         {
@@ -89,7 +90,6 @@ public class Move implements Command{
         } else {        
             turnAnimation(180);
         }
-
     }
     
     public void moveEast(){
@@ -111,7 +111,6 @@ public class Move implements Command{
         } else {        
             turnAnimation(270);
         }
-
     }
     
     public void moveSouthEast(){

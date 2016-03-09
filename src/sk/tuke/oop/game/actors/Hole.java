@@ -25,7 +25,7 @@ public class Hole extends  AbstractActor implements Observer{
     }    
 
     @Override
-    public void giveNotice(Trigger trigger) {
+    public void giveNotice() {
         normalAnimation.start();
         spawn = true;
     }
@@ -44,6 +44,10 @@ public class Hole extends  AbstractActor implements Observer{
             }
         }
 
+    }
+
+    @Override
+    public void giveNotice(Trigger trigger) {
     }
     
 }

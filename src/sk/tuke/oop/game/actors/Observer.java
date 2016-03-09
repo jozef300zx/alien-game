@@ -11,4 +11,5 @@ package sk.tuke.oop.game.actors;
  */
 public interface Observer {
     public void giveNotice(Trigger trigger);
+    public void giveNotice();
 }

@@ -28,13 +28,18 @@
      <object name="energy" x="1488" y="1552" width="16" height="16"/>     
      <object name="green key" x="1408" y="32" width="16" height="16"/>  
      <object name="gun upgrade" x="1504" y="96" width="16" height="16"/>  
+     <object name="hammer" x="1184" y="1232" width="16" height="16"/>  
+     <object name="hammer" x="1024" y="560" width="16" height="16"/>
      <object name="horizontal door" type="1" x="1536" y="1456" width="32" height="16"/>
      <object name="horizontal door" type="2" x="1504" y="1264" width="32" height="16"/>
      <object name="horizontal door" type="3" x="1504" y="944" width="32" height="16"/>
-     <object name="vertical door" type="4" x="1280" y="1504" width="16" height="32"/>
      <object name="horizontal door" type="5" x="1024" y="816" width="32" height="16"/>
      <object name="horizontal door" type="6" x="1312" y="224" width="32" height="16"/>
-     <object name="vertical door" type="7" x="1280" y="1504" width="16" height="32"/>
+     <object name="vertical door" type="4" x="1280" y="1504" width="16" height="32"/>
+     <object name="vertical door" type="8" x="1024" y="32" width="16" height="32"/>
+     <object name="big locked door" type="5.4" x="1440" y="208" width="48" height="16"/>
+     <object name="big locked door" type="5.4" x="1488" y="208" width="48" height="16"/>
+     <object name="big locked door" type="5.4" x="1536" y="208" width="48" height="16"/>
      <object name="computer" x="1328" y="1552" width="80" height="48"/>
      <object name="computer" x="1328" y="1472" width="80" height="48"/>
      <object name="computer" x="992" y="432" width="80" height="48"/>
@@ -42,13 +47,23 @@
      <object name="computer" x="992" y="272" width="80" height="48"/>
      <object name="computer" x="1104" y="272" width="80" height="48"/>
      <object name="computer" x="1216" y="272" width="80" height="48"/>
-     <object name="generator" x="1016" y="504" width="48" height="32"/>
-     <object name="generator" x="1016" y="584" width="48" height="32"/>
-     <object name="generator" x="1016" y="664" width="48" height="32"/>
+     <object name="generator" x="1000" y="520" width="48" height="32"/>
+     <object name="generator" x="1016" y="520" width="48" height="32"/>
+     <object name="generator" x="1032" y="520" width="48" height="32"/>
+     <object name="generator" x="1000" y="600" width="48" height="32"/>
+     <object name="generator" x="1016" y="600" width="48" height="32"/>
+     <object name="generator" x="1032" y="600" width="48" height="32"/>
+     <object name="generator" x="1000" y="680" width="48" height="32"/>
+     <object name="generator" x="1016" y="680" width="48" height="32"/>
+     <object name="generator" x="1032" y="680" width="48" height="32"/>
      <!--
      <object name="hole" type="1.1" x="1296" y="1392" width="32" height="32"/>
      <object name="hole" type="1.1" x="1568" y="1328" width="32" height="32"/>
      <object name="hole" type="1.1" x="1376" y="1280" width="32" height="32"/>
+     <object name="alien" type="2" x="1440" y="960" width="32" height="32"/>
+     <object name="alien" type="2" x="1552" y="960" width="32" height="32"/>
+     <object name="alien" type="2" x="1440" y="1200" width="32" height="32"/>
+     <object name="alien" type="2" x="1552" y="1200" width="32" height="32"/>
      -->
      <object name="horizontal body" type="4.1" x="1296" y="1280" width="64" height="48"/>
      <object name="horizontal body" type="hammer" x="1360" y="1360" width="64" height="48"/>
@@ -61,34 +76,42 @@
      <object name="fan" x="1008" y="1344" width="32" height="32"/>
      <object name="cooler" x="1008" y="1408" width="32" height="32"/>
      <object name="fan" x="1008" y="1472" width="32" height="32"/>
+     <object name="broken fan" type="5.1" x="1168" y="400" width="32" height="32"/>
+     <object name="broken fan" type="5.1" x="1168" y="608" width="32" height="32"/>
+     <object name="broken fan" type="5.1" x="1376" y="400" width="32" height="32"/>
+     <object name="broken fan" type="5.1" x="1376" y="608" width="32" height="32"/>  
+     <object name="broken cooler" type="5.1" x="1104" y="32" width="32" height="32"/>  
      <object name="teleport" x="1168" y="1344" width="64" height="64"/>
 
      
-     <object name="invisible tile" type="1.1" x="1536" y="1408" width="16" height="16"/>
-     <object name="invisible tile" type="1.1" x="1504" y="1424" width="16" height="16"/>
-     <object name="invisible tile" type="1.1" x="1572" y="1408" width="16" height="16"/>
-     <object name="invisible tile" type="3.1" x="1504" y="976" width="16" height="16"/>
+
      
-     <object name="invisible tile" type="4.1" x="1248" y="1488" width="16" height="16"/>
-     <object name="invisible tile" type="4.1" x="1216" y="1504" width="16" height="16"/>
-     <object name="invisible tile" type="4.1" x="1216" y="1536" width="16" height="16"/>     
-     <object name="invisible tile" type="4.1" x="1248" y="1552" width="16" height="16"/> 
-     
-     <object name="ground light" type="" x="1152" y="1360" width="16" height="16"/>
-     <object name="ground light" type="" x="1152" y="1376" width="16" height="16"/>
-     <object name="ground light" type="" x="1232" y="1360" width="16" height="16"/>
-     <object name="ground light" type="" x="1232" y="1376" width="16" height="16"/>
+     <object name="ground light" type="5.3" x="1152" y="1360" width="16" height="16"/>
+     <object name="ground light" type="5.3" x="1152" y="1376" width="16" height="16"/>
+     <object name="ground light" type="5.3" x="1232" y="1360" width="16" height="16"/>
+     <object name="ground light" type="5.3" x="1232" y="1376" width="16" height="16"/>
+     <object name="ground light" type="5.3" x="1440" y="240" width="16" height="16"/>
+     <object name="ground light" type="5.3" x="1472" y="240" width="16" height="16"/>
+     <object name="ground light" type="5.3" x="1504" y="240" width="16" height="16"/>
+     <object name="ground light" type="5.3" x="1536" y="240" width="16" height="16"/>
+     <object name="reactor" type="5.2" x="1248" y="480" width="80" height="80"/>
+     <object name="monster" type="6.1" x="1424" y="96" width="78" height="127"/>
+   
      
      
      
      
      <object name="locker" type="wrench locker" x="1424" y="1488" width="80" height="48"/>
-     <object name="alien" type="2" x="1440" y="960" width="32" height="32"/>
-     <object name="alien" type="2" x="1552" y="960" width="32" height="32"/>
-     <object name="alien" type="2" x="1440" y="1200" width="32" height="32"/>
-     <object name="alien" type="2" x="1552" y="1200" width="32" height="32"/>
-     
-     
+     <object name="locker" type="hammer locker" x="960" y="192" width="80" height="48"/>
+
+     <object name="invisible tile" type="1.1" x="1536" y="1408" width="16" height="16"/>
+     <object name="invisible tile" type="1.1" x="1504" y="1424" width="16" height="16"/>
+     <object name="invisible tile" type="1.1" x="1572" y="1408" width="16" height="16"/>
+     <object name="invisible tile" type="3.1" x="1504" y="976" width="16" height="16"/>
+     <object name="invisible tile" type="4.1" x="1248" y="1488" width="16" height="16"/>
+     <object name="invisible tile" type="4.1" x="1216" y="1504" width="16" height="16"/>
+     <object name="invisible tile" type="4.1" x="1216" y="1536" width="16" height="16"/>     
+     <object name="invisible tile" type="4.1" x="1248" y="1552" width="16" height="16"/> 
      <object name="black tile 20x12" type="1" x="1280" y="1264" width="320" height="192"/>
      <object name="black tile 8x9" type="1" x="1280" y="1456" width="320" height="192"/>
      <object name="black tile 11x20" type="2" x="1424" y="944" width="176" height="320"/>

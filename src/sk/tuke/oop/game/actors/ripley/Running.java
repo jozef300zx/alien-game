@@ -11,6 +11,8 @@ import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Input;
 import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.framework.Message;
+import sk.tuke.oop.game.actors.BrokenCooler;
+import sk.tuke.oop.game.actors.BrokenFan;
 import sk.tuke.oop.game.actors.Explosion;
 import sk.tuke.oop.game.actors.SmallExplosion;
 import sk.tuke.oop.game.actors.Usable;
@@ -22,6 +24,8 @@ import sk.tuke.oop.game.commands.Move;
 import sk.tuke.oop.game.commands.NextItem;
 import sk.tuke.oop.game.commands.TakeItem;
 import sk.tuke.oop.game.commands.Use;
+import sk.tuke.oop.game.items.Hammer;
+import sk.tuke.oop.game.items.Wrench;
 
 /**
  *
@@ -125,11 +129,18 @@ public class Running implements RipleyState{
             {
                 if(ripley.getBackpack().items.size() > 0)
                 {
-                if(ripley.intersects(actor) && ripley.getBackpack().getLastItem() instanceof Usable && actor != ripley)
+                if(ripley.intersects(actor) && actor instanceof BrokenFan && ((BrokenFan)actor).isBroken() && ripley.getBackpack().getLastItem() instanceof Hammer && actor != ripley)
                 {
                     usables.add(new Use(ripley.getBackpack().getLastItem(),actor));
+                    ripley.getBackpack().remove(ripley.getBackpack().getLastItem());
                     
                 }
+                if(ripley.intersects(actor) && actor instanceof BrokenCooler && ripley.getBackpack().getLastItem() instanceof Wrench && actor != ripley)
+                {
+                    usables.add(new Use(ripley.getBackpack().getLastItem(),actor));
+                    ripley.getBackpack().remove(ripley.getBackpack().getLastItem());
+                    
+                }                
                 }
                 
                 if(actor instanceof Usable && ripley.intersects(actor) && actor != ripley)

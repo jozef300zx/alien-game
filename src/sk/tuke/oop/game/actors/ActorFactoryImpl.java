@@ -12,12 +12,14 @@ import sk.tuke.oop.game.actors.ripley.Ripley;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.ActorFactory;
 import sk.tuke.oop.game.actors.alien.AlienEgg;
+import sk.tuke.oop.game.actors.alien.Monster;
 import sk.tuke.oop.game.actors.tiles.BlackTile20x12;
 import sk.tuke.oop.game.actors.tiles.BlackTile8x9;
 import sk.tuke.oop.game.actors.machine.FloorSwitch;
 import sk.tuke.oop.game.actors.machine.Lever;
 import sk.tuke.oop.game.actors.machine.Machine;
 import sk.tuke.oop.game.actors.machine.WallSwitch;
+import sk.tuke.oop.game.actors.openables.BigLockedDoor;
 import sk.tuke.oop.game.actors.openables.Door;
 import sk.tuke.oop.game.actors.tiles.BlackTile11x20;
 import sk.tuke.oop.game.actors.tiles.BlackTile11x9;
@@ -30,6 +32,7 @@ import sk.tuke.oop.game.items.Energy;
 import sk.tuke.oop.game.items.EnergyPulseAmmo;
 import sk.tuke.oop.game.items.GreenKey;
 import sk.tuke.oop.game.items.GunUpgrade;
+import sk.tuke.oop.game.items.Hammer;
 
 /**
  *
@@ -92,18 +95,25 @@ public class ActorFactoryImpl implements ActorFactory {
             }                 
             case "horizontal door" : 
             {  
-                actor = new Door("horizontal door",false);
+                actor = new Door(false);
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }     
             case "vertical door" : 
             {  
-                actor = new Door("vertical door",true);
+                actor = new Door(true);
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }                            
+            }              
+            case "big locked door" : 
+            {  
+                actor = new BigLockedDoor();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }                    
             case "ellen" : 
             {
                 actor = new Ripley();
@@ -303,6 +313,27 @@ public class ActorFactoryImpl implements ActorFactory {
             case "generator" : 
             {
                 actor = new Generator();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }       
+            case "monster" : 
+            {
+                actor = new Monster();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }              
+            case "reactor" : 
+            {
+                actor = new Reactor();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }     
+            case "hammer" : 
+            {
+                actor = new Hammer();
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;

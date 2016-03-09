@@ -84,9 +84,13 @@ public class Body extends AbstractActor implements Usable,Observer{
     }
 
     @Override
-    public void giveNotice(Trigger trigger) {
+    public void giveNotice() {
         spawn = true;
 
+    }
+
+    @Override
+    public void giveNotice(Trigger trigger) {
     }
     
 }

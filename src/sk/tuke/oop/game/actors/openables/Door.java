@@ -24,7 +24,7 @@ public class Door extends AbstractActor implements Usable,Openable,Trigger{
     Set <Observer> listOfObservers = new HashSet<> ();
     private boolean initialCycle;
     
-    public Door(String name, boolean vertical) {
+    public Door(boolean vertical) {
         if(vertical) {
         normalAnimation = new Animation("resources/sprites/vdoor.png",16,32,100);
         } else {
@@ -35,7 +35,6 @@ public class Door extends AbstractActor implements Usable,Openable,Trigger{
         normalAnimation.setLooping(false);
         isOpen = false;
         locked = false;
-        this.setName(name);
         initialCycle = true;
     }
 
@@ -49,8 +48,6 @@ public class Door extends AbstractActor implements Usable,Openable,Trigger{
         if(!isLocked()){
         normalAnimation.setPingPong(false);
         normalAnimation.start();
-        if(normalAnimation.getCurrentFrame() == 3)
-            normalAnimation.stop();
         isOpen = true;
         if(getHeight() > getWidth()) {
         getWorld().setWall(this.getX() / 16, this.getY() / 16, false);

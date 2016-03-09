@@ -209,5 +209,9 @@ public class Alien extends AbstractCharacter implements Movable, Enemy, Observer
     public void setTrigger(Trigger trigger) {
         this.trigger = trigger;
     }
+
+    @Override
+    public void giveNotice() {
+    }
 }
 

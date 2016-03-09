@@ -66,7 +66,7 @@ public class InvisibleTile extends AbstractActor implements Trigger{
         if(this.intersects(ripley) && giveNoticeOnce)
         {
             for(Observer o : listOfObservers){
-            o.giveNotice(this);
+            o.giveNotice();
             }
             giveNoticeOnce = false;
         }

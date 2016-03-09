@@ -36,8 +36,12 @@ public class GroundLight extends AbstractActor implements Switchable, Observer{
     }
 
     @Override
-    public void giveNotice(Trigger trigger) {
+    public void giveNotice() {
         turnOn();
+    }
+
+    @Override
+    public void giveNotice(Trigger trigger) {
     }
     
 }
