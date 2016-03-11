@@ -45,11 +45,12 @@ public void act(){
             }            
             
             if(timer == 1){
-                getWorld().removeActor(lurkerSpawn);
                 Lurker lurker  = new Lurker();
                 lurker.setPosition(this.getX(), this.getY());
                 getWorld().addActor(lurker);
                 spawn = false;
+                getWorld().removeActor(lurkerSpawn);
+                getWorld().removeActor(this);
             }
                 timer--;
             

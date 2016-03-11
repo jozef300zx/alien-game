@@ -13,6 +13,7 @@ import sk.tuke.oop.framework.Item;
 import sk.tuke.oop.framework.Message;
 import sk.tuke.oop.game.actors.BrokenCooler;
 import sk.tuke.oop.game.actors.BrokenFan;
+import sk.tuke.oop.game.actors.Expirable;
 import sk.tuke.oop.game.actors.Explosion;
 import sk.tuke.oop.game.actors.SmallExplosion;
 import sk.tuke.oop.game.actors.Usable;
@@ -230,9 +231,9 @@ public class Running implements RipleyState{
                     ripley.setHealth(0);
             }
             
-            if(actor instanceof Explosion){
-                ((SmallExplosion) actor).setTimer(((SmallExplosion) actor).getTimer() - 1);
-                if(((SmallExplosion) actor).getTimer() == 0){
+            if(actor instanceof Expirable){
+                ((Expirable) actor).setTimer(((Expirable) actor).getTimer() - 1);
+                if(((Expirable) actor).getTimer() == 0){
                     toRemove.add(actor);
                         
                 }

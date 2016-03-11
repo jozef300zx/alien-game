@@ -11,7 +11,7 @@ import sk.tuke.oop.framework.Animation;
  *
  * @author jmorvay
  */
-public class SmallExplosion extends AbstractActor implements Explosion{
+public class SmallExplosion extends AbstractActor implements Explosion,Expirable{
     private int timer;
     
         public SmallExplosion(){

@@ -23,9 +23,14 @@ import sk.tuke.oop.game.actors.openables.BigLockedDoor;
 import sk.tuke.oop.game.actors.openables.Door;
 import sk.tuke.oop.game.actors.tiles.BlackTile11x20;
 import sk.tuke.oop.game.actors.tiles.BlackTile11x9;
-import sk.tuke.oop.game.actors.tiles.BlackTile21x21;
-import sk.tuke.oop.game.actors.tiles.BlackTile41x37;
+import sk.tuke.oop.game.actors.tiles.BlackTile13x12;
+import sk.tuke.oop.game.actors.tiles.BlackTile21x1;
+import sk.tuke.oop.game.actors.tiles.BlackTile21x20;
+import sk.tuke.oop.game.actors.tiles.BlackTile30x27;
+import sk.tuke.oop.game.actors.tiles.BlackTile41x38;
+import sk.tuke.oop.game.actors.tiles.BlackTile8x12;
 import sk.tuke.oop.game.actors.tiles.InvisibleTile;
+import sk.tuke.oop.game.actors.tiles.InvisibleTile17x12;
 import sk.tuke.oop.game.items.AccessCard;
 import sk.tuke.oop.game.items.Ammo;
 import sk.tuke.oop.game.items.Energy;
@@ -233,16 +238,23 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }       
-            case "black tile 21x21" : 
+            case "black tile 21x20" : 
             {
-                actor = new BlackTile21x21();
+                actor = new BlackTile21x20();
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }     
-            case "black tile 41x37" : 
+            case "black tile 21x1" : 
             {
-                actor = new BlackTile41x37();
+                actor = new BlackTile21x1();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }              
+            case "black tile 41x38" : 
+            {
+                actor = new BlackTile41x38();
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
@@ -250,6 +262,27 @@ public class ActorFactoryImpl implements ActorFactory {
             case "black tile 11x9" : 
             {
                 actor = new BlackTile11x9();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }   
+            case "black tile 13x12" : 
+            {
+                actor = new BlackTile13x12();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }  
+            case "black tile 8x12" : 
+            {
+                actor = new BlackTile8x12();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }    
+            case "black tile 30x27" : 
+            {
+                actor = new BlackTile30x27();
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
@@ -282,6 +315,13 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }  
+            case "invisible tile 17x12" : 
+            {
+                actor = new InvisibleTile17x12();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }              
             case "ground light" : 
             {
                 actor = new GroundLight();
@@ -312,11 +352,11 @@ public class ActorFactoryImpl implements ActorFactory {
             }     
             case "generator" : 
             {
-                actor = new Generator();
+                 actor = new Generator();
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }       
+            }               
             case "monster" : 
             {
                 actor = new Monster();
@@ -337,7 +377,14 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
-            }              
+            }       
+            case "lightning" : 
+            {
+                actor = new Lightning();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }                 
             
             default: return null;
         }

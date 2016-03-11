@@ -14,7 +14,7 @@ import sk.tuke.oop.game.actors.ripley.Ripley;
  *
  * @author jmorvay
  */
-public class Teleport extends AbstractActor{
+public class Teleport extends AbstractActor implements  Observer{
     private Teleport destinationTeleport;
     private boolean teleported;
     private boolean poweredOn;
@@ -24,13 +24,13 @@ public class Teleport extends AbstractActor{
     {
         normalAnimation = new Animation("resources/sprites/teleport.png",64,64,100);
         setAnimation(normalAnimation);
-        setPoweredOn(false);
+        setPoweredOn(true);
     }
     
     public void teleportPlayer()
     {
 
-        if(this.isTeleported() == false && this.destinationTeleport != null && ripley.getX() < this.getX() + this.getWidth() && ripley.getX() + ripley.getWidth() > this.getX() && ripley.getY() < this.getY() + this.getHeight() && ripley.getY() + ripley.getHeight() > this.getY())
+        if(!isTeleported() && this.destinationTeleport != null && ripley.getX() + ripley.getWidth() < this.getX() + this.getWidth() && ripley.getX() > this.getX() && ripley.getY() > this.getY() && ripley.getY() + ripley.getHeight() < this.getY() + this.getHeight())
         {
             ripley.setPosition(this.destinationTeleport.getX() + 16, this.destinationTeleport.getY() + 16);
             this.destinationTeleport.setTeleported(true);
@@ -52,19 +52,21 @@ public class Teleport extends AbstractActor{
                 if(actor instanceof Ripley){
                     ripley = (Ripley) actor;
                 }
-                if(actor instanceof Teleport && ((AbstractActor)actor).getType().equals("teleport 1") && actor != this){
+                if(actor instanceof Teleport && actor != this){
                     destinationTeleport = (Teleport) actor;
                 }
             }
         }
         
-        
-        if(!isPoweredOn() && ripley.intersects(this)){
+        if(ripley.intersects(this)){
+        if(!isPoweredOn()){
             getWorld().showMessage(new Message("The teleport requires power to work...",100, 10));
         } else {
-     this.teleportPlayer();   
-     this.resetTeleport();
+            teleportPlayer(); 
         }
+        }
+        
+        resetTeleport();
     }
 
     public boolean isPoweredOn() {
@@ -81,6 +83,15 @@ public class Teleport extends AbstractActor{
 
     public void setTeleported(boolean teleported) {
         this.teleported = teleported;
+    }
+
+    @Override
+    public void giveNotice(Trigger trigger) {
+    }
+
+    @Override
+    public void giveNotice() {
+        setPoweredOn(true);
     }
     
 }

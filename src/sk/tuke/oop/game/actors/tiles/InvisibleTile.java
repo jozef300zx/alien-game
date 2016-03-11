@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
+import sk.tuke.oop.framework.Message;
 import sk.tuke.oop.game.actors.AbstractActor;
 import sk.tuke.oop.game.actors.Observer;
 import sk.tuke.oop.game.actors.Trigger;
@@ -20,7 +21,7 @@ import sk.tuke.oop.game.actors.ripley.Ripley;
  *
  * @author jmorvay
  */
-public class InvisibleTile extends AbstractActor implements Trigger{
+public class InvisibleTile extends AbstractActor implements Trigger, Observer{
     Set <Observer> listOfObservers = new HashSet<> ();
     private boolean initialCycle;
     Actor ripley;
@@ -43,8 +44,6 @@ public class InvisibleTile extends AbstractActor implements Trigger{
                 }
             }
             }
-                        
-
             if(this.getType().equals("4.1")){
             for(Actor actor : getWorld())
             {
@@ -52,17 +51,24 @@ public class InvisibleTile extends AbstractActor implements Trigger{
                     addObserver((Observer)actor);
                 }
             }
-            }     
-            
+            }                   
             
             for(Actor actor : getWorld()){
-                if(actor instanceof Ripley){
+                if(actor instanceof Ripley && this.ripley == null){
                     this.ripley = actor;
                 }
             }
             initialCycle = false;
         }
         
+        if(this.getType().equals("5.5")){
+
+                if(this.intersects(ripley)){
+                    getWorld().showMessage(new Message("The door exudes a toxic odour. The room behind is probably contaminated!", 100, 10));
+                }
+            
+        }
+                    
         if(this.intersects(ripley) && giveNoticeOnce)
         {
             for(Observer o : listOfObservers){
@@ -101,5 +107,15 @@ public class InvisibleTile extends AbstractActor implements Trigger{
     public void removeObserver(Observer o){
         listOfObservers.remove(o);
     } 
+
+    @Override
+    public void giveNotice(Trigger trigger) {
+        getWorld().removeActor(this);
+        trigger.removeObserver(this);        
+    }
+
+    @Override
+    public void giveNotice() {
+    }
     
 }

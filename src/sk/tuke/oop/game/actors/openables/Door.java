@@ -22,6 +22,7 @@ public class Door extends AbstractActor implements Usable,Openable,Trigger{
     boolean isOpen;
     private boolean locked;
     Set <Observer> listOfObservers = new HashSet<> ();
+    Set <Observer> observersToBeRemoved = new HashSet<> ();
     private boolean initialCycle;
     
     public Door(boolean vertical) {
@@ -61,6 +62,7 @@ public class Door extends AbstractActor implements Usable,Openable,Trigger{
         
         
         for(Observer o : listOfObservers){
+            o.giveNotice();
             o.giveNotice(this);
         }
         }
@@ -112,7 +114,7 @@ public class Door extends AbstractActor implements Usable,Openable,Trigger{
     }
     
     public void removeObserver(Observer o){
-        listOfObservers.remove(o);
+        observersToBeRemoved.add(o);
     }    
     
     @Override
@@ -158,13 +160,45 @@ public class Door extends AbstractActor implements Usable,Openable,Trigger{
             if(this.getType().equals("4")){
             for(Actor actor : getWorld())
             {
-                if(actor != this && ((AbstractActor) actor).getType().equals("4")){
+                if(actor != this && (((AbstractActor) actor).getType().equals("4") || ((AbstractActor) actor).getType().equals("4.5"))){
+                    addObserver((Observer)actor);
+                }
+            }            
+            }  
+            if(this.getType().equals("5")){
+            for(Actor actor : getWorld())
+            {
+                if(actor != this && (((AbstractActor) actor).getType().equals("5") || ((AbstractActor) actor).getType().equals("4.5"))){
                     addObserver((Observer)actor);
                 }
             }            
             }            
+            if(this.getType().equals("6")){
+            for(Actor actor : getWorld())
+            {
+                if(actor != this && ((AbstractActor) actor).getType().equals("6")){
+                    addObserver((Observer)actor);
+                }
+            }            
+            }        
+            if(this.getType().equals("8")){
+            for(Actor actor : getWorld())
+            {
+                if(actor != this && ((AbstractActor) actor).getType().equals("8")){
+                    addObserver((Observer)actor);
+                }
+            }            
+            }               
             initialCycle = false;
         }
+        if(!observersToBeRemoved.isEmpty()){
+        for(Observer o : observersToBeRemoved){
+            listOfObservers.remove(o);
+        }
+        observersToBeRemoved.clear();
+        }
+        
+        
     }
     
 
