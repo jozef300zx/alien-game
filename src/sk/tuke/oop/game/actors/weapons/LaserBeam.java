@@ -10,7 +10,7 @@ import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractCharacter;
-import sk.tuke.oop.game.actors.SmallExplosion;
+import sk.tuke.oop.game.actors.explosions.SmallExplosion;
 import sk.tuke.oop.game.actors.alien.Enemy;
 import sk.tuke.oop.game.commands.Move;
 

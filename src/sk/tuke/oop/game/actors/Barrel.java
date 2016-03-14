@@ -5,6 +5,7 @@
  */
 package sk.tuke.oop.game.actors;
 
+import sk.tuke.oop.game.actors.explosions.DamagingExplosion;
 import sk.tuke.oop.game.actors.alien.Enemy;
 import sk.tuke.oop.framework.Animation;
 

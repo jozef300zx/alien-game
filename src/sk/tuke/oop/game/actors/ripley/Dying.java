@@ -5,15 +5,20 @@
  */
 package sk.tuke.oop.game.actors.ripley;
 
+import java.util.ArrayList;
+import java.util.List;
+import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.framework.Input;
 import sk.tuke.oop.framework.Message;
+import sk.tuke.oop.game.actors.Expirable;
 
 /**
  *
  * @author jmorvay
  */
 public class Dying implements RipleyState{
+    List<Actor> toRemove = new ArrayList<> ();    
     private Ripley ripley;
     Animation deadAnimation;
     int animationTimer;
@@ -42,7 +47,19 @@ public class Dying implements RipleyState{
         if (ripley.getInput().isKeyPressed(Input.Key.ESCAPE)) {
             System.exit(0);
         }        
-    
+        for (Actor actor : ripley.getWorld()){
+            if(actor instanceof Expirable){
+                ((Expirable) actor).setTimer(((Expirable) actor).getTimer() - 1);
+                if(((Expirable) actor).getTimer() == 0){
+                    toRemove.add(actor);
+                        
+                }
+            }
+            
+        }
+        for (Actor actor : toRemove){
+                ripley.getWorld().removeActor(actor);
+        }  
     
 }
     

@@ -11,7 +11,7 @@ import java.util.List;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractActor;
-import sk.tuke.oop.game.actors.SmallExplosion;
+import sk.tuke.oop.game.actors.explosions.SmallExplosion;
 import sk.tuke.oop.game.actors.openables.LockedDoor;
 
 /**

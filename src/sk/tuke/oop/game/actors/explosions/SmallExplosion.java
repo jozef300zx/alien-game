@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.tuke.oop.game.actors;
+package sk.tuke.oop.game.actors.explosions;
 
 import sk.tuke.oop.framework.Animation;
+import sk.tuke.oop.game.actors.AbstractActor;
+import sk.tuke.oop.game.actors.Expirable;
 
 /**
  *

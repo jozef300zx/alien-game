@@ -14,7 +14,7 @@ import sk.tuke.oop.game.actors.AbstractCharacter;
 import sk.tuke.oop.game.actors.alien.Enemy;
 import sk.tuke.oop.game.actors.Movable;
 import sk.tuke.oop.game.actors.Projectile;
-import sk.tuke.oop.game.actors.SmallExplosion;
+import sk.tuke.oop.game.actors.explosions.SmallExplosion;
 import sk.tuke.oop.game.commands.Move;
 
 /**

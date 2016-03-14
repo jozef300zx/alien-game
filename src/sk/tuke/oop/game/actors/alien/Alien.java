@@ -8,7 +8,7 @@ package sk.tuke.oop.game.actors.alien;
 import sk.tuke.oop.framework.Actor;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.AbstractCharacter;
-import sk.tuke.oop.game.actors.LargeExplosion;
+import sk.tuke.oop.game.actors.explosions.LargeExplosion;
 import sk.tuke.oop.game.actors.Movable;
 import sk.tuke.oop.game.actors.Observer;
 import sk.tuke.oop.game.actors.Trigger;

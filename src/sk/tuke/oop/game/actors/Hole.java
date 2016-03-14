@@ -8,6 +8,7 @@ package sk.tuke.oop.game.actors;
 import sk.tuke.oop.framework.Animation;
 import sk.tuke.oop.game.actors.alien.Active;
 import sk.tuke.oop.game.actors.alien.Alien;
+import sk.tuke.oop.game.actors.alien.Waiting;
 
 /**
  *
@@ -26,28 +27,37 @@ public class Hole extends  AbstractActor implements Observer{
 
     @Override
     public void giveNotice() {
-        normalAnimation.start();
-        spawn = true;
+
     }
     
     public void act(){
         if(spawn){
-            if(timer % 150 == 0 && timer < 350){
+            if(timer % 150 == 0){
                 Alien alien  = new Alien();
-                alien.setState(new Active(alien));
+                if(this.getType().equals("waiting")){
+                    alien.setState(new Waiting(alien));  
+                } else {
+                    alien.setState(new Active(alien));
+                }
                 alien.setPosition(this.getX(), this.getY());
                 getWorld().addActor(alien);
             }
             
             if(timer > 1){
-                timer--;
+            timer--;
             }
+            if(timer == 1){
+                this.spawn = false;
+            }            
         }
 
     }
 
     @Override
     public void giveNotice(Trigger trigger) {
+        normalAnimation.start();
+        spawn = true;
+        trigger.removeObserver(this);
     }
     
 }

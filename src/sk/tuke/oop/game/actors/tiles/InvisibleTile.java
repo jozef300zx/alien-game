@@ -23,6 +23,7 @@ import sk.tuke.oop.game.actors.ripley.Ripley;
  */
 public class InvisibleTile extends AbstractActor implements Trigger, Observer{
     Set <Observer> listOfObservers = new HashSet<> ();
+    Set <Observer> observersToBeRemoved = new HashSet<> ();
     private boolean initialCycle;
     Actor ripley;
     private boolean giveNoticeOnce;
@@ -51,7 +52,15 @@ public class InvisibleTile extends AbstractActor implements Trigger, Observer{
                     addObserver((Observer)actor);
                 }
             }
-            }                   
+            }   
+            if(this.getType().equals("7.1")){
+            for(Actor actor : getWorld())
+            {
+                if(!(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("waiting")){
+                    addObserver((Observer)actor);
+                }
+            }
+            }             
             
             for(Actor actor : getWorld()){
                 if(actor instanceof Ripley && this.ripley == null){
@@ -69,12 +78,11 @@ public class InvisibleTile extends AbstractActor implements Trigger, Observer{
             
         }
                     
-        if(this.intersects(ripley) && giveNoticeOnce)
+        if(this.intersects(ripley))
         {
             for(Observer o : listOfObservers){
-            o.giveNotice();
+            o.giveNotice(this);
             }
-            giveNoticeOnce = false;
         }
             if(this.getType().equals("3.1")){
                 Alien alien = null;
@@ -96,7 +104,13 @@ public class InvisibleTile extends AbstractActor implements Trigger, Observer{
             getWorld().addActor(alien2);
             getWorld().removeActor(this);
             }
-            }         
+            }
+        if(!observersToBeRemoved.isEmpty()){
+        for(Observer o : observersToBeRemoved){
+            listOfObservers.remove(o);
+        }
+        observersToBeRemoved.clear();
+        }            
     }
     
     
@@ -105,8 +119,8 @@ public class InvisibleTile extends AbstractActor implements Trigger, Observer{
     }
     
     public void removeObserver(Observer o){
-        listOfObservers.remove(o);
-    } 
+        observersToBeRemoved.add(o);
+    }  
 
     @Override
     public void giveNotice(Trigger trigger) {
