@@ -34,8 +34,9 @@ public class Hole extends  AbstractActor implements Observer{
         if(spawn){
             if(timer % 150 == 0){
                 Alien alien  = new Alien();
-                if(this.getType().equals("waiting")){
+                if(this.getName().equals("waiting hole")){
                     alien.setState(new Waiting(alien));  
+                    alien.setType("7.7");
                 } else {
                     alien.setState(new Active(alien));
                 }

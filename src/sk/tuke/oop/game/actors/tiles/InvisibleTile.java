@@ -37,37 +37,38 @@ public class InvisibleTile extends AbstractActor implements Trigger, Observer{
     public void act(){
         if(initialCycle){         
             //get list of observers
-            if(this.getType().equals("1.1")){
-            for(Actor actor : getWorld())
-            {
-                if(!(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("1.1")){
-                    addObserver((Observer)actor);
-                }
-            }
-            }
-            if(this.getType().equals("4.1")){
-            for(Actor actor : getWorld())
-            {
-                if(!(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("4.1")){
-                    addObserver((Observer)actor);
-                }
-            }
-            }   
-            if(this.getType().equals("7.1")){
-            for(Actor actor : getWorld())
-            {
-                if(!(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("waiting")){
-                    addObserver((Observer)actor);
-                }
-            }
-            }             
             
-            for(Actor actor : getWorld()){
-                if(actor instanceof Ripley && this.ripley == null){
-                    this.ripley = actor;
+            for(Actor actor : getWorld())
+            {
+                if(this.getType().equals("1.1") && !(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("1.1")){
+                    addObserver((Observer)actor);
                 }
-            }
+                if(this.getType().equals("4.1") && !(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("4.1")){
+                    addObserver((Observer)actor);
+                }
+                if(this.getType().equals("7.1") && !(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("7.1")){
+                    addObserver((Observer)actor);
+                }      
+                if(this.getType().equals("7.2") && !(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("7.2")){
+                    addObserver((Observer)actor);
+                }
+                if(this.getType().equals("7.3") && !(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("7.3")){
+                    addObserver((Observer)actor);
+                }    
+                if(this.getType().equals("7.4") && !(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("7.4")){
+                    addObserver((Observer)actor);
+                }    
+                if(this.getType().equals("7.5") && !(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("7.5")){
+                    addObserver((Observer)actor);
+                }      
+                if(this.getType().equals("7.6") && !(actor instanceof InvisibleTile) && ((AbstractActor) actor).getType().equals("7.6")){
+                    addObserver((Observer)actor);
+                }                    
+                if(actor instanceof Ripley && this.ripley == null){
+                    this.ripley = actor;                
+                }
             initialCycle = false;
+            }
         }
         
         if(this.getType().equals("5.5")){

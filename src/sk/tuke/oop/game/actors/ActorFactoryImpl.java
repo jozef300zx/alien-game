@@ -287,13 +287,20 @@ public class ActorFactoryImpl implements ActorFactory {
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }             
-            case "hole" : 
+            case "waiting hole" : 
             {
                 actor = new Hole();
                 ((AbstractActor) actor).setName(string1);
                 ((AbstractActor) actor).setType(string);
                 return actor;
             }  
+            case "hole" : 
+            {
+                actor = new Hole();
+                ((AbstractActor) actor).setName(string1);
+                ((AbstractActor) actor).setType(string);
+                return actor;
+            }              
             case "vertical body" : 
             {
                 actor = new Body(false);
