@@ -94,7 +94,7 @@
      <object name="waiting hole" type="7.6" x="1232" y="1120" width="32" height="32"/>
      <object name="waiting hole" type="7.6" x="1296" y="1120" width="32" height="32"/>             
           
-     <!--
+     
      <object name="hole" type="1.1" x="1296" y="1392" width="32" height="32"/>
      <object name="hole" type="1.1" x="1568" y="1328" width="32" height="32"/>
      <object name="hole" type="1.1" x="1376" y="1280" width="32" height="32"/>
@@ -102,7 +102,7 @@
      <object name="alien" type="2" x="1552" y="960" width="32" height="32"/>
      <object name="alien" type="2" x="1440" y="1200" width="32" height="32"/>
      <object name="alien" type="2" x="1552" y="1200" width="32" height="32"/>
-     -->
+     
      <object name="horizontal body" type="4.1" x="1296" y="1280" width="64" height="48"/>
      <object name="horizontal body" type="hammer" x="1360" y="1360" width="64" height="48"/>
      <object name="vertical body" type="4.1" x="950" y="1290" width="48" height="64"/>
